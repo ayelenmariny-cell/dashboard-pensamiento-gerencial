@@ -368,7 +368,7 @@ with tab2:
     with col_btn2:
         if st.button("📦 Área de Operaciones y Bodega", use_container_width=True): st.session_state.area_activa = "📦 Operaciones"
     with col_btn3:
-        if st.button("💰 Área de Finanzas de Contabilidad", use_container_width=True): st.session_state.area_activa = "💰 Finanzas"
+        if st.button("💰 Área de Finanzas y Contabilidad", use_container_width=True): st.session_state.area_activa = "💰 Finanzas"
 
     st.markdown("---")
 
@@ -379,7 +379,7 @@ with tab2:
         c1, c2, c3 = st.columns(3)
         with c1: mini_card("Objetivo Primario", "Maximizar la contribución de la cartera diseñando ofertas a la medida del mercado.", "🎯")
         with c2: mini_card("Problema de Partida", "Equipos de venta desgastados por atender con el mismo esfuerzo a clientes masivos y cuentas clave.", "⚠️")
-        with c3: mini_card("Ecosistema de Conceptos", "Clientes, Propuestas de Valor, Planificación, Inteligencia Artificial y Segmentación.", "🔗")
+        with c3: mini_card("Ecosistema de Conceptos", "Clientes, Propuestas de Valor, Planificación y Segmentación.", "🔗")
         
         col_text1, col_text2 = st.columns(2)
         with col_text1:
@@ -388,7 +388,7 @@ with tab2:
             Al inicio del ciclo, nuestra perspectiva comercial era lineal: empujar volumen de ventas a cualquier costo sin una estrategia clara. 
             A lo largo del proceso, comprendimos que una cartera comercial requiere una **planificación** analítica rigurosa. 
             
-            Aprendimos a clasificar a los **clientes** según su valor y recurrencia, distinguiendo las lógicas de negociación relacional (B2B) frente a las dinámicas masivas (B2C). El gran salto innovador ocurrió al integrar Inteligencia Artificial como copiloto estratégico, permitiéndonos formular **propuestas** comerciales competitivas y altamente personalizadas para optimizar la conversión de la fuerza de ventas.
+            Aprendimos a clasificar a los **clientes** según su valor y recurrencia, distinguiendo las lógicas de negociación relacional (B2B) frente a las dinámicas masivas (B2C). Formulamos **propuestas** comerciales competitivas y altamente personalizadas para optimizar la conversión de la fuerza de ventas.
             """)
         with col_text2:
             st.markdown("### 🛠️ Obstáculos Superados y Criterio Profesional")
@@ -419,7 +419,7 @@ with tab2:
 
     # MACROÁREA 3: FINANZAS
     elif st.session_state.area_activa == "💰 Finanzas":
-        st.subheader("💰 Área de Finanzas de Contabilidad: Control de Gestión y Estructura Financiera")
+        st.subheader("💰 Área de Finanzas y Contabilidad: Control de Gestión y Estructura Financiera")
         
         c1, c2, c3 = st.columns(3)
         with c1: mini_card("Objetivo Primario", "Traducir los hechos económicos operativos en información contable fidedigna para el gobierno corporativo.", "🎯")
