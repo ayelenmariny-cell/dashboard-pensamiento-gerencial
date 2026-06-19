@@ -2,33 +2,36 @@ import streamlit as st
 import pandas as pd
 
 # ============================================================
-# CONFIGURACIÓN GENERAL Y ESTILOS (TU DISEÑO LILA PREMIUM)
+# CONFIGURACIÓN GENERAL
 # ============================================================
 st.set_page_config(
-    page_title="Portafolio Gerencial Interactivo",
-    page_icon="🌸",
+    page_title="Portafolio Gerencial Directivo",
+    page_icon="💼",
     layout="wide"
 )
 
+# ============================================================
+# ESTILO VISUAL: AZUL CORPORATIVO, SOBRIO Y PROFESIONAL
+# ============================================================
 st.markdown(
     """
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght=400;600;700;800&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap');
 
         html, body, [class*="css"]  {
             font-family: 'Inter', sans-serif;
         }
 
         .stApp {
-            background: linear-gradient(135deg, #fbf7ff 0%, #f1e7ff 45%, #fff8fb 100%);
+            background: linear-gradient(135deg, #f4f8fa 0%, #eef5f9 45%, #f7fbfd 100%);
         }
 
         .main-title {
             padding: 1.5rem 1.7rem;
-            border-radius: 28px;
-            background: linear-gradient(135deg, #7b4bb7 0%, #b388eb 55%, #f7c8e0 100%);
+            border-radius: 24px;
+            background: linear-gradient(135deg, #1e3a8a 0%, #2563eb 55%, #60a5fa 100%);
             color: white;
-            box-shadow: 0 16px 40px rgba(123, 75, 183, 0.22);
+            box-shadow: 0 14px 35px rgba(37, 99, 235, 0.15);
             margin-bottom: 1.2rem;
         }
 
@@ -37,42 +40,45 @@ st.markdown(
             font-size: 2.15rem;
             line-height: 1.15;
             font-weight: 800;
+            color: white !important;
         }
 
         .main-title p {
             margin-top: .65rem;
             font-size: 1.02rem;
             opacity: .95;
+            color: white !important;
         }
 
         .section-card {
             padding: 1.25rem 1.35rem;
-            border-radius: 22px;
-            background: rgba(255, 255, 255, 0.80);
-            border: 1px solid rgba(179, 136, 235, 0.26);
-            box-shadow: 0 12px 28px rgba(109, 75, 145, 0.10);
+            border-radius: 20px;
+            background: rgba(255, 255, 255, 0.85);
+            border: 1px solid rgba(37, 99, 235, 0.15);
+            box-shadow: 0 10px 25px rgba(30, 58, 138, 0.05);
             margin-bottom: 1rem;
-            color: #3b155f;
+            color: #1e293b;
         }
 
         .soft-card {
             padding: 1.05rem 1.15rem;
-            border-radius: 20px;
+            border-radius: 16px;
             background: #ffffffcc;
-            border-left: 6px solid #b388eb;
-            box-shadow: 0 10px 25px rgba(123, 75, 183, 0.10);
+            border-left: 6px solid #2563eb;
+            box-shadow: 0 8px 22px rgba(37, 99, 235, 0.06);
             min-height: 155px;
             margin-bottom: 1rem;
         }
 
         .mini-card {
             padding: .95rem 1rem;
-            border-radius: 18px;
+            border-radius: 16px;
             background: #ffffffd9;
-            border: 1px solid #eadcff;
-            box-shadow: 0 8px 20px rgba(123, 75, 183, 0.08);
+            border: 1px solid #dbeafe;
+            box-shadow: 0 6px 18px rgba(37, 99, 235, 0.04);
             min-height: 135px;
             margin-bottom: 1rem;
+            color: #1e3a8a;
         }
 
         .concept-pill {
@@ -80,19 +86,19 @@ st.markdown(
             padding: .35rem .7rem;
             margin: .18rem .18rem .18rem 0;
             border-radius: 999px;
-            background: #efe2ff;
-            color: #5a2d82;
+            background: #e0f2fe;
+            color: #0369a1;
             font-weight: 700;
             font-size: .86rem;
-            border: 1px solid #d9c3ff;
+            border: 1px solid #bae6fd;
         }
 
-        h1, h2, h3, h4 {
-            color: #4b2178;
+        h1, h2, h3, h4, h5 {
+            color: #1e3a8a;
         }
 
         div[data-testid="stMetricValue"] {
-            color: #6f42c1;
+            color: #2563eb;
         }
 
         .stTabs [data-baseweb="tab-list"] {
@@ -103,12 +109,13 @@ st.markdown(
             background-color: #ffffffb8;
             border-radius: 999px;
             padding: .6rem 1rem;
-            border: 1px solid #eadcff;
+            border: 1px solid #dbeafe;
+            color: #64748b;
         }
 
         .stTabs [aria-selected="true"] {
-            background: linear-gradient(135deg, #d9c3ff, #f7c8e0) !important;
-            color: #3b155f !important;
+            background: linear-gradient(135deg, #bae6fd, #e0f2fe) !important;
+            color: #1e3a8a !important;
             font-weight: 800;
         }
     </style>
@@ -117,12 +124,12 @@ st.markdown(
 )
 
 # ============================================================
-# COMPONENTES VISUALES REUTILIZABLES
+# FUNCIONES DE APOYO VISUAL
 # ============================================================
 def hero(titulo: str, bajada: str):
     st.markdown(f'<div class="main-title"><h1>{titulo}</h1><p>{bajada}</p></div>', unsafe_allow_html=True)
 
-def card(titulo: str, texto: str, icono: str = "✨"):
+def card(titulo: str, texto: str, icono: str = "🔹"):
     st.markdown(f'<div class="soft-card"><h3>{icono} {titulo}</h3><p>{texto}</p></div>', unsafe_allow_html=True)
 
 def mini_card(titulo: str, texto: str, icono: str = "•"):
@@ -131,78 +138,198 @@ def mini_card(titulo: str, texto: str, icono: str = "•"):
 def concepto(nombre: str):
     st.markdown(f"<span class='concept-pill'>{nombre}</span>", unsafe_allow_html=True)
 
-# BANNER PRINCIPAL
+# BANNER PRINCIPAL CON DISEÑO SOBRIO
 hero(
-    "🌸 Portafolio Colectivo Avanzado: Pensamiento Gerencial Aplicado",
-    "Demostración interactiva de la madurez del criterio de negocio a través de las grandes áreas estratégicas de la empresa."
+    "📊 Portafolio Interactivo Colectivo: Pensamiento Gerencial y Ciclo de la Empresa",
+    "Una guía estratégica para comprender la organización como un sistema integrado, conectando sus áreas funcionales mediante la toma de decisiones basada en datos."
 )
 
-# PESTAÑAS
-tab1, tab2, tab3 = st.tabs([
-    "🌐 1. Marco Conceptual e Intro", 
-    "🏢 2. Matriz de Madurez por Áreas", 
-    "🧠 3. Reflexión Final e Impacto"
+st.caption("Versión ejecutiva superior: analítica por macroáreas estratégicas, con mapas interactivos de procesos corporativos.")
+
+# PESTAÑAS PRINCIPALES
+tab1, tab2, tab3, tab4 = st.tabs([
+    "🏢 Empresa y pensamiento gerencial",
+    "📈 Madurez Estratégica por Áreas",
+    "🔗 Flujo del pensamiento gerencial",
+    "🧠 Reflexión final"
 ])
 
 # ============================================================
-# PESTAÑA 1: MARCO CONCEPTUAL (UNIFICADO Y PROFUNDIZADO)
+# TAB 1: EMPRESA Y PENSAMIENTO GERENCIAL
 # ============================================================
 with tab1:
-    st.header("🧠 Fundamentos Gerenciales: El Pensamiento y su Tablero de Juego")
-    
+    st.header("1. El Motor Principal: Introducción general al concepto de empresa")
+
     st.markdown(
         """
         <div class="section-card">
-        <b>Idea central:</b> Una empresa no es una planilla estática de tareas. Es un <b>sistema vivo</b> e interconectado 
-        donde cada decisión operativa gatilla un efecto dominó sobre los estados financieros y la viabilidad comercial.
+        <b>Idea central:</b> Una empresa no es una estructura estática de tareas aisladas. 
+        Es un <b>sistema vivo e integrado</b> compuesto por recursos, procesos y decisiones estratégicas orientadas a resolver una necesidad en el mercado y generar valor económico sostenible.
         </div>
         """,
         unsafe_allow_html=True
     )
-    
-    col_izq, col_der = st.columns([1.2, 1])
-    
+
+    col_izq, col_der = st.columns([1.1, 1])
+
     with col_izq:
         st.subheader("🧬 ¿Qué es el Pensamiento Gerencial?")
         st.write(
             "Es la capacidad de desarrollar un **criterio analítico y crítico** para tomar decisiones defendibles bajo incertidumbre. "
-            "Implica transicionar de un rol puramente operativo (completar una tarea) a un **rol estratégico** (comprender el impacto sistémico de la tarea en el negocio)."
+            "Implica transicionar de un rol puramente operativo (ejecutar tareas aisladas) a un **rol estratégico** (comprender el impacto sistémico de la tarea en toda la organización)."
         )
         st.info(
-            "🏥 **La Analogía Sistémica:** El área de Finanzas de Contabilidad actúa como el corazón que distribuye los recursos; "
-            "Operaciones representa los músculos que ejecutan el abastecimiento y la bodega; Comercial y Ventas son los sentidos que leen al cliente; "
-            "mientras la Gerencia opera como el cerebro que orquesta el sistema completo."
+            "💼 **La Sincronización Sistémica:** Tal como se aprecia en el mapa del ecosistema corporativo inferior, la firma es un conjunto de engranajes donde "
+            "Finanzas, Operaciones (Compras y Bodega), Comercial y Control de Gestión interactúan de forma dependiente y coordinada."
         )
-    
+        
+        # --- MAPA CONCEPTUAL INTERACTIVO CONSTRUIDO EN CÓDIGO ---
+        st.markdown("### 🗺️ Mapa del Ecosistema Empresarial")
+        st.caption("Seleccione cualquier nodo del sistema para auditar su rol estratégico en el negocio:")
+        
+        area_seleccionada = st.pills(
+            "Selecciona un nodo corporativo:",
+            ["📊 Dirección / Gerencia", "💰 Finanzas", "📈 Comercial / Ventas", "📦 Compras y Abastecimiento", "⚙️ Operaciones y Bodega", "🚦 Control de Gestión"],
+            selection_mode="single",
+            default="📊 Dirección / Gerencia"
+        )
+        
+        if "Dirección" in area_seleccionada:
+            st.markdown(
+                """
+                <div class="mini-card" style="border-left: 5px solid #1e3a8a; background-color: #f8fafc;">
+                    <h5><b>El Cerebro Organizacional (Alta Dirección)</b></h5>
+                    <p>Orquesta el sistema completo. Asegura la <b>coherencia estratégica</b>: garantiza de forma proactiva que la planificación comercial sea soportada eficientemente por Operaciones y correctamente financiada por Contabilidad.</p>
+                </div>
+                """, unsafe_allow_html=True
+            )
+        elif "Finanzas" in area_seleccionada:
+            st.markdown(
+                """
+                <div class="mini-card" style="border-left: 5px solid #2563eb; background-color: #f8fafc;">
+                    <h5><b>El Flujo de Recursos (Caja y Sostenibilidad)</b></h5>
+                    <p>Traduce los movimientos operativos en estados financieros de control. Monitorea el capital de trabajo, asegurando que los recursos no se queden "congelados" en la bodega en forma de stock inmovilizado.</p>
+                </div>
+                """, unsafe_allow_html=True
+            )
+        elif "Comercial" in area_seleccionada:
+            st.markdown(
+                """
+                <div class="mini-card" style="border-left: 5px solid #3b82f6; background-color: #f8fafc;">
+                    <h5><b>La Relación con el Mercado (Captación de Valor)</b></h5>
+                    <p>Mapea las necesidades del entorno, segmenta las carteras B2B/B2C y genera los ingresos. Sus proyecciones de demanda (forecasting) gatillan de forma directa toda la cadena de suministro hacia atrás.</p>
+                </div>
+                """, unsafe_allow_html=True
+            )
+        elif "Compras" in area_seleccionada:
+            st.markdown(
+                """
+                <div class="mini-card" style="border-left: 5px solid #0284c7; background-color: #f8fafc;">
+                    <h5><b>Abastecimiento Estratégico (Logística de Entrada)</b></h5>
+                    <p>Gestiona la relación de suministro y los procesos de importación. Equilibra el nivel de servicio óptimo para mitigar quiebres sin comprometer la capacidad de almacenamiento ni la liquidez.</p>
+                </div>
+                """, unsafe_allow_html=True
+            )
+        elif "Operaciones" in area_seleccionada:
+            st.markdown(
+                """
+                <div class="mini-card" style="border-left: 5px solid #06b6d4; background-color: #f8fafc;">
+                    <h5><b>Ejecución y Custodia (Continuidad del Negocio)</b></h5>
+                    <p>Responsable del control físico de existencias, el orden estricto del Kardex y la preparación de pedidos. Su rigor mitiga errores de digitación humana que distorsionan el costeo del negocio.</p>
+                </div>
+                """, unsafe_allow_html=True
+            )
+        elif "Control" in area_seleccionada:
+            st.markdown(
+                """
+                <div class="mini-card" style="border-left: 5px solid #0f766e; background-color: #f8fafc;">
+                    <h5><b>Auditoría y Métricas (Trazabilidad Total)</b></h5>
+                    <p>Monitorea las desviaciones del plan original mediante KPIs y visualización de datos. Asegura la cuadratura y veracidad: que los saldos de inventario coincidan con la realidad contable de la firma.</p>
+                </div>
+                """, unsafe_allow_html=True
+            )
+
     with col_der:
         st.subheader("⚙️ Funciones Básicas del Administrador")
         funciones = pd.DataFrame({
             "Función": ["Planificar", "Organizar", "Dirigir", "Controlar"],
-            "Enfoque Gerencial Extendido": [
-                "Definir metas del negocio, prever la demanda futura y estructurar cursos de acción estratégicos.",
-                "Asignar recursos escasos, estructurar responsabilidades y sincronizar departamentos corporativos.",
-                "Comunicar visiones estratégicas, liderar con base en datos y movilizar equipos hacia objetivos comunes.",
-                "Medir desvíos mediante visualización de datos, auditar costos y aplicar correcciones oportunas."
+            "Criterio Gerencial Aplicado": [
+                "Definir objetivos de negocio, prever la demanda futura y diseñar planes de acción eficientes.",
+                "Asignar recursos escasos, estructurar responsabilidades del personal y sincronizar departamentos.",
+                "Comunicar visiones estratégicas, liderar basándose en evidencia empírica y coordinar equipos.",
+                "Medir desviaciones mediante analítica visual, auditar costos y aplicar correcciones oportunas."
             ]
         })
         st.dataframe(funciones, use_container_width=True, hide_index=True)
 
     st.markdown("---")
-    
-    st.subheader("🎛️ Lentes del Criterio Profesional")
-    st.write("Un directivo alterna dinámicamente sus marcos de pensamiento según la complejidad del escenario organizacional:")
-    
-    lente = st.radio("Selecciona un enfoque conceptual para examinar su utilidad gerencial:", ["⚙️ Sistémico", "♟️ Estratégico", "🔍 Crítico"], horizontal=True)
-    if lente == "⚙️ Sistémico":
-        st.success("**Pensamiento Sistémico:** Muestra las cadenas de impacto. Permite ver que un error en el registro de bodega altera el costeo de importaciones, distorsiona los márgenes y vicia el Balance General.")
-    elif lente == "♟️ Estratégico":
-        st.success("**Pensamiento Estratégico:** Centrado en la sostenibilidad de largo plazo. Evalúa si las propuestas comerciales de hoy comprometen la caja, la capacidad de almacenamiento o la reputación de la firma mañana.")
+
+    st.subheader("🎛️ Lentes del Criterio Profesional: Cambiar de enfoque para decidir mejor")
+    st.write("Un directivo exitoso alterna dinámicamente sus marcos de pensamiento según las complejidades del escenario:")
+
+    lente = st.radio(
+        "Selecciona un lente gerencial para examinar su utilidad práctica:",
+        ["⚙️ Enfoque Sistémico", "♟️ Enfoque Estratégico", "🔍 Enfoque Crítico"],
+        horizontal=True
+    )
+
+    if "Sistémico" in lente:
+        st.info("**Pensamiento sistémico:** Permite comprender las relaciones causa-efecto. Muestra que un error en el ingreso de bodega altera el costeo de importaciones, distorsiona los márgenes y vicia el Balance General final.")
+    elif "Estratégico" in lente:
+        st.info("**Pensamiento estratégico:** Centrado en la sostenibilidad del negocio a largo plazo. No solo soluciona la urgencia de hoy, sino que evalúa si las ofertas de hoy comprometen la liquidez o la capacidad física de mañana.")
     else:
-        st.success("**Pensamiento Crítico:** Desafía los datos preliminares. Obliga al equipo a cuestionar 'costos negativos' o reportes contables inconsistentes antes de fijar las matrices de precio.")
+        st.info("**Pensamiento crítico:** Desafía los datos preliminares. Obliga al equipo directivo a cuestionar anomalías operativas (como un 'costo negativo') antes de validar los precios de venta de la firma.")
+
+    # ============================================================
+    # SECCIÓN: LOS 4 CONCEPTOS CRÍTICOS DEL TALLER
+    # ============================================================
+    st.markdown("---")
+    st.subheader("🚀 Pilares Estratégicos: Los 4 Conceptos Críticos del Taller")
+    st.write("Los pilares fundamentales que transformaron nuestra teoría en una gestión directiva real:")
+
+    cc1, cc2 = st.columns(2)
+    with cc1:
+        st.markdown(
+            """
+            <div class="mini-card" style="border-left: 5px solid #1e3a8a; min-height: 250px;">
+                <h4>📦 1. El Inventario como Dinero Congelado</h4>
+                <p><b>Lo importante:</b> Romper el mito de que <i>"mientras más stock tengamos, mejor"</i>. Aprendimos que tener cajas acumulando polvo en bodega es sinónimo de asfixia financiera.</p>
+                <p style="font-size: 0.9rem; color: #1e3a8a;"><b>El criterio clave:</b> Al analizar la cobertura entendimos la trampa del promedio: para calcular el promedio de ventas se deben considerar los 6 meses completos del semestre, porque mantener el producto ahí costó dinero real todo ese tiempo. Con la clasificación ABC aprendimos a no perder tiempo: el foco del gerente debe estar en el 20% de los productos que pagan los sueldos (Clase A) y en liquidar los productos 'fantasmas' (Clase Z) que tienen venta $0.</p>
+            </div>
+            """, unsafe_allow_html=True
+        )
+        st.markdown(
+            """
+            <div class="mini-card" style="border-left: 5px solid #2563eb; min-height: 250px;">
+                <h4>🛠️ 3. La Rigurosidad Operativa y los Errores Humanos</h4>
+                <p><b>Lo importante:</b> Los sistemas informáticos (como un ERP) no son mágicos; dependen de la disciplina de las personas que ingresan los datos.</p>
+                <p style="font-size: 0.9rem; color: #1e3a8a;"><b>El criterio clave:</b> Al auditar el Kardex valorizado enfrentamos el misterio de los 'costos negativos'. Comprendimos que la matemática no se equivoca, sino que refleja fallas de proceso humano: el equipo digitalizó las ventas antes de registrar formalmente la llegada del barco con las compras. Un CEO eficiente mapea estos desfases para reordenar los procesos del personal en la bodega.</p>
+            </div>
+            """, unsafe_allow_html=True
+        )
+    with cc2:
+        st.markdown(
+            """
+            <div class="mini-card" style="border-left: 5px solid #3b82f6; min-height: 250px;">
+                <h4>🔗 2. La Coherencia en la Planificación o "Efecto Pirámide"</h4>
+                <p><b>Lo importante:</b> La empresa no puede ser un caos donde cada área opera de forma aislada. Comercial y Operaciones deben hablar exactamente el mismo idioma.</p>
+                <p style="font-size: 0.9rem; color: #1e3a8a;"><b>El criterio clave:</b> En el forecasting descubrimos que no se puede proyectar la venta de un cable suelto sin mirar el panorama general: las proyecciones individuales por SKU deben sumar exactamente lo mismo que las metas corporativas de sus Familias y Subfamilias. Si esa pirámide no es coherente, Operaciones mandará a pedir barcos a Asia con mercadería que Comercial no planea vender.</p>
+            </div>
+            """, unsafe_allow_html=True
+        )
+        st.markdown(
+            """
+            <div class="mini-card" style="border-left: 5px solid #0284c7; min-height: 250px;">
+                <h4>⚖️ 4. La Cuadratura Financiera y la Verdad de los Datos</h4>
+                <p><b>Lo importante:</b> En los negocios, todo lo que entra tiene que salir; la contabilidad es exacta y transparente.</p>
+                <p style="font-size: 0.9rem; color: #1e3a8a;"><b>El criterio clave:</b> La cuadratura total es el examen de control definitivo. Si el inventario inicial, más lo que se compró, menos lo que se vendió, no calza con el stock físico de la bodega, hay un problema crítico (mermas, robos o errores de digitación). El concepto central aquí es la trazabilidad: un buen administrador puede rastrear cada peso y cada tornillo desde que cruza la aduana hasta que llega al cliente final.</p>
+            </div>
+            """, unsafe_allow_html=True
+        )
 
     st.markdown("---")
-    st.subheader("📊 Clasificación Avanzada del Tablero de Juego")
-    st.write("Las empresas comerciales y del sector terciario (como nuestro foco en **importaciones**) centran su gestión en coordinar eficientemente los flujos financieros y de stock:")
+    st.subheader("📊 Clasificación General del Tablero de Juego")
+    st.write("Las empresas comerciales y del sector terciario centran su gestión en coordinar eficientemente los flujos financieros y de stock:")
     
     m1, m2, m3 = st.columns(3)
     with m1:
@@ -216,135 +343,302 @@ with tab1:
         st.write("Busca proteger la rentabilidad de los accionistas asegurando liquidez y controlando estrictamente las mermas.")
 
 # ============================================================
-# PESTAÑA 2: MATRIZ DE MADUREZ POR ÁREAS (EVOLUCIÓN ENFOQUE PROFESOR)
+# TAB 2: MATRIZ DE MADUREZ POR ÁREAS
 # ============================================================
 with tab2:
-    st.header("🏢 Evolución de Criterio por Áreas Funcionales")
-    st.write("Demostración cronológica de madurez del equipo. Evaluamos nuestro progreso unificando las misiones por áreas estratégicas.")
+    st.header("🏢 2. El Escenario: Evolución por Áreas Estratégicas")
+
+    st.markdown(
+        """
+        <div class="section-card">
+        Para consolidar el progreso del semestre, organizamos la evolución del criterio directivo en 
+        <b>tres grandes macroáreas corporativas</b>. Ninguna de estas áreas opera de forma aislada: 
+        cada decisión comercial impacta los flujos logísticos y se valida finalmente en los estados financieros.
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
 
     if "area_activa" not in st.session_state:
-        st.session_state.area_activa = "📈 Comercial"
+        st.session_state.area_activa = "🛒 Comercial"
 
-    col_a1, col_a2, col_a3 = st.columns(3)
-    with col_a1:
-        if st.button("📈 Comercial y Ventas", use_container_width=True): st.session_state.area_activa = "📈 Comercial"
-    with col_a2:
-        if st.button("📦 Operaciones y Bodega", use_container_width=True): st.session_state.area_activa = "📦 Operaciones"
-    with col_a3:
-        if st.button("💰 Finanzas y Contabilidad", use_container_width=True): st.session_state.area_activa = "💰 Finanzas"
+    col_btn1, col_btn2, col_btn3 = st.columns(3)
+    with col_btn1:
+        if st.button("📈 Área Comercial y Ventas", use_container_width=True): st.session_state.area_activa = "🛒 Comercial"
+    with col_btn2:
+        if st.button("📦 Área de Operaciones y Bodega", use_container_width=True): st.session_state.area_activa = "📦 Operaciones"
+    with col_btn3:
+        if st.button("💰 Área de Finanzas de Contabilidad", use_container_width=True): st.session_state.area_activa = "💰 Finanzas"
 
     st.markdown("---")
 
-    if st.session_state.area_activa == "📈 Comercial":
+    # MACROÁREA 1: COMERCIAL
+    if st.session_state.area_activa == "🛒 Comercial":
         st.subheader("📈 Área Comercial: Gestión Estratégica de Clientes y Oferta de Valor")
-        c1, c2, c3 = st.columns(3)
-        with c1: mini_card("Objetivo Primario", "Maximizar la contribución de la cartera diseñando modelos de atención diferenciados.", "🎯")
-        with c2: mini_card("Problema de Partida", "Equipos comerciales desgastados por atender con idéntico recurso a clientes masivos y cuentas clave.", "⚠️")
-        with c3: mini_card("Conceptos Clave", "Clientes, Propuestas, Planificación, Segmentación B2B y B2C.", "🔗")
         
-        col1, col2 = st.columns(2)
-        with col1:
-            st.markdown("### 🔄 Evolución del Aprendizaje (De Misión 4 a Misión 7)")
-            st.write(
-                "Al inicio del semestre, nuestra perspectiva comercial era lineal: vender volumen a cualquier costo. "
-                "Al abordar la **Misión 4**, entendimos que una cartera comercial requiere **planificación** analítica. "
-                "Clasificamos a los **clientes** según valor, frecuencia y potencial, distinguiendo dinámicas de negociación corporativa (B2B) frente a masivas (B2C). "
-                "Posteriormente, formulamos **propuestas** de valor competitivas de forma ágil, culminando en la **Misión 7** con modelos de **visualización** que mapean el rendimiento comercial en tiempo real."
-            )
-        with col2:
+        c1, c2, c3 = st.columns(3)
+        with c1: mini_card("Objetivo Primario", "Maximizar la contribución de la cartera diseñando ofertas a la medida del mercado.", "🎯")
+        with c2: mini_card("Problema de Partida", "Equipos de venta desgastados por atender con el mismo esfuerzo a clientes masivos y cuentas clave.", "⚠️")
+        with c3: mini_card("Ecosistema de Conceptos", "Clientes, Propuestas de Valor, Planificación, Inteligencia Artificial y Segmentación.", "🔗")
+        
+        col_text1, col_text2 = st.columns(2)
+        with col_text1:
+            st.markdown("### 🔄 Evolución del Aprendizaje Gerencial")
+            st.write("""
+            Al inicio del ciclo, nuestra perspectiva comercial era lineal: empujar volumen de ventas a cualquier costo sin una estrategia clara. 
+            A lo largo del proceso, comprendimos que una cartera comercial requiere una **planificación** analítica rigurosa. 
+            
+            Aprendimos a clasificar a los **clientes** según su valor y recurrencia, distinguiendo las lógicas de negociación relacional (B2B) frente a las dinámicas masivas (B2C). El gran salto innovador ocurrió al integrar Inteligencia Artificial como copiloto estratégico, permitiéndonos formular **propuestas** comerciales competitivas y altamente personalizadas para optimizar la conversión de la fuerza de ventas.
+            """)
+        with col_text2:
             st.markdown("### 🛠️ Obstáculos Superados y Criterio Profesional")
-            st.error("**El Quiebre:** Superar la tentación de confiar ciegamente en algoritmos de generación de texto corporativo; aprendimos a auditar los entregables bajo un estricto criterio comercial humano.")
-            st.success("**Aplicación Futura:** Diseñar planes de cobertura comercial eficientes, comisiones de venta basadas en **márgenes** reales y transformaciones digitales con analítica de datos comerciales.")
+            st.error("**El Quiebre Superado:** Aprender a no depender ciegamente de los algoritmos de la tecnología; entrenamos el criterio para auditar y estructurar cada entregable antes de presentarlo al mercado.")
+            st.success("**Uso en la Empresa Real:** Nos faculta para diseñar planes de cobertura comercial eficientes, fijar comisiones basadas en **márgenes** reales y liderar equipos comerciales modernos utilizando herramientas de analítica y **visualización** corporativa.")
 
+    # MACROÁREA 2: OPERACIONES
     elif st.session_state.area_activa == "📦 Operaciones":
         st.subheader("📦 Área de Operaciones: Sincronización de Bodega, Logística y Abastecimiento")
-        c1, c2, c3 = st.columns(3)
-        with c1: mini_card("Objetivo Primario", "Garantizar la continuidad del negocio mitigando mermas y balanceando los niveles de servicio.", "🎯")
-        with c2: mini_card("Problema de Partida", "Bodegas colapsadas con stock obsoleto conviviendo con quiebres críticos en productos estrella.", "⚠️")
-        with c3: mini_card("Conceptos Clave", "Inventario, Kardex, Abastecimiento, Importaciones, Clasificación ABC, SKU.", "🔗")
         
-        col1, col2 = st.columns(2)
-        with col1:
-            st.markdown("### 🔄 Evolución del Aprendizaje (De Misión 2 a Misión 5)")
-            st.write(
-                "Nuestra inmersión operativa comenzó en la **Misión 2**, donde concebíamos la bodega como un mero almacén estático. El análisis del **Kardex** de movimientos nos demostró el impacto financiero del **inventario** inmovilizado. "
-                "Con la técnica ABC, aprendimos a priorizar recursos en los SKU que sostienen las ventas. El verdadero salto gerencial ocurrió entre la **Misión 3** y **Misión 5**: logramos conectar el pronóstico de demanda con la logística de **importaciones**, transformando la compra reactiva en un proceso formal de **abastecimiento** estratégico."
-            )
-        with col2:
+        c1, c2, c3 = st.columns(3)
+        with c1: mini_card("Objetivo Primario", "Garantizar la continuidad del negocio optimizando la rotación física del producto y mitigando mermas.", "🎯")
+        with c2: mini_card("Problema de Partida", "Bodegas colapsadas con stock obsoleto conviviendo con quiebres críticos en los productos estrella.", "⚠️")
+        with c3: mini_card("Ecosistema de Conceptos", "Inventario, Kardex Valorizado, Abastecimiento, Importaciones y Clasificación ABC.", "🔗")
+        
+        col_text1, col_text2 = st.columns(2)
+        with col_text1:
+            st.markdown("### 🔄 Evolución del Aprendizaje Gerencial")
+            st.write("""
+            Nuestra inmersión operativa comenzó concibiendo la bodega de forma intuitiva como un mero almacén estático. El análisis detallado del **Kardex** físico nos abrió los ojos para entender el verdadero impacto financiero del **inventario** inmovilizado.
+            
+            Con la técnica ABC de Pareto, aprendimos a priorizar los esfuerzos del personal en los SKU críticos para el negocio. La madurez del área se consolidó al enfrentar el proceso de **importaciones**, donde logramos conectar de forma lógica la travesía de traer contenedores desde el extranjero con un modelo de **abastecimiento** sincronizado con las proyecciones comerciales de la firma.
+            """)
+        with col_text2:
             st.markdown("### 🛠️ Obstáculos Superados y Criterio Profesional")
-            st.error("**El Quiebre:** Trabajar con bases de datos operativas reales que contenían inconsistencias y conciliar la presión comercial por sobrestockearse frente a las restricciones de espacio físico.")
-            st.success("**Aplicación Futura:** Liderar departamentos logísticos fijando stocks de seguridad matemáticos, optimizando el capital de trabajo y coordinando cadenas de suministro internacionales eficientes.")
+            st.error("**El Quiebre Superado:** Trabajar y limpiar bases de datos operativas reales que contenían inconsistencias, logrando balancear las presiones comerciales frente a las restricciones de espacio físico.")
+            st.success("**Uso en la Empresa Real:** Diseñar políticas eficientes de compras internacionales y control de stock en firmas comerciales, protegiendo activamente el capital de trabajo de la organización.")
 
+    # MACROÁREA 3: FINANZAS
     elif st.session_state.area_activa == "💰 Finanzas":
-        st.subheader("💰 Área de Finanzas y Contabilidad: Control de Gestión y Estructura Financiera")
-        c1, c2, c3 = st.columns(3)
-        with c1: mini_card("Objetivo Primario", "Traducir los hechos económicos del negocio en estados financieros íntegros para el gobierno corporativo.", "🎯")
-        with c2: mini_card("Problema de Partida", "Existencia de inconsistencias contables ('costos negativos') en los ERP que invalidaban la toma de decisiones.", "⚠️")
-        with c3: mini_card("Conceptos Clave", "Costos, Sueldos, Cotizaciones, Márgenes, Estados Financieros, Balance.", "🔗")
+        st.subheader("💰 Área de Finanzas de Contabilidad: Control de Gestión y Estructura Financiera")
         
-        col1, col2 = st.columns(2)
-        with col1:
-            st.markdown("### 🔄 Evolución del Aprendizaje (De Misión 5 a Misión 7)")
-            st.write(
-                "Iniciamos el análisis financiero en la **Misión 5**, enfrentando descalces de costeo y aprendiendo a estructurar planillas complejas de **sueldos** y **cotizaciones** previsionales bajo marco legal. "
-                "Nuestra visión maduró de forma definitiva en la **Misión 7**, cuando dejamos de ver cuentas aisladas y consolidamos Libros Diarios en un Balance de Ocho Columnas y Estados Financieros completos. Aprendimos a auditar los **márgenes** brutos y operacionales reales de la organización para emitir diagnósticos financieros certeros."
-            )
-        with col2:
+        c1, c2, c3 = st.columns(3)
+        with c1: mini_card("Objetivo Primario", "Traducir los hechos económicos operativos en información contable fidedigna para el gobierno corporativo.", "🎯")
+        with c2: mini_card("Problema de Partida", "Inconsistencias contables y desfases en los ERP ('costos negativos') que invalidaban la toma de decisiones.", "⚠️")
+        with c3: mini_card("Ecosistema de Conceptos", "Costos Reales, Sueldos, Cotizaciones, Márgenes y Estados Financieros.", "🔗")
+        
+        col_text1, col_text2 = st.columns(2)
+        with col_text1:
+            st.markdown("### 🔄 Evolución del Aprendizaje Gerencial")
+            st.write("""
+            En esta área descubrimos el verdadero lenguaje de los negocios. Comenzamos analizando **costos** básicos, pero avanzamos rápidamente a entender la complejidad de auditar planillas operativas, integrando el cálculo legal de **sueldos** junto con sus respectivas **cotizaciones** previsionales.
+            
+            Todo este ecosistema de información maduró de forma definitiva al consolidar los registros diarios en un Balance de Ocho Columnas y Estados Financieros completos. Esto nos permitió auditar los **márgenes** reales de contribución y utilizar técnicas avanzadas de **visualización** de **datos** para presentar la salud del negocio a nivel directivo.
+            """)
+        with col_text2:
             st.markdown("### 🛠️ Obstáculos Superados y Criterio Profesional")
-            st.error("**El Quiebre:** Romper la visión del contador tradicional enfocado solo en el 'cuadre por partida doble'; escalamos hacia la mentalidad directiva que interpreta indicadores de liquidez, endeudamiento y rentabilidad.")
-            st.success("**Aplicación Futura:** Evaluar la viabilidad financiera de proyectos comerciales, defender presupuestos ante comités directivos y estructurar tableros de control de gestión automatizados.")
+            st.error("**El Quiebre Superado:** Superar el simple cuadre numérico tradicional de celdas; escalamos hacia una mentalidad directiva que interpreta indicadores de liquidez, rentabilidad y riesgo.")
+            st.success("**Uso en la Empresa Real:** Nos faculta para estructurar presupuestos eficientes, auditar costos de internación reales y rendir cuentas transparentes ante un Directorio mediante tableros de control automatizados.")
 
 # ============================================================
-# PESTAÑA 3: REFLEXIÓN FINAL E IMPACTO (TU EXCELENTE SIMULADOR SELECTBOX)
+# TAB 3: FLUJO DEL PENSAMIENTO GERENCIAL
 # ============================================================
 with tab3:
-    st.header("🧠 Reflexión Ejecutiva e Integración de Aprendizajes")
-    st.write("Selecciona un escenario de negocio real para evaluar cómo el criterio gerencial resuelve la complejidad empresarial:")
-    
-    opcion_reflexion = st.selectbox(
-        "Elige una situación crítica organizativa para auditar:",
-        ["🚨 Escenario A: La bodega está colapsada, pero Comercial reclama quiebres de stock continuos.",
-         "📉 Escenario B: Las planillas de costos muestran descalces y hay sospechas de pérdidas silenciosas de margen.",
-         "🔮 Escenario C: El Directorio exige sustentar el plan de expansión estratégica basado en la salud del negocio."]
-    )
-    
-    st.markdown("---")
-    
-    if "🚨" in opcion_reflexion:
-        st.markdown("### 📦 Diagnóstico de Operaciones: Sincronización Comercial-Abastecimiento")
-        col1, col2, col3 = st.columns(3)
-        with col1: st.info("### 🧠 ¿Qué Aprendimos?\nQue el inventario inmovilizado destruye la caja. El uso de **Kardex** y clasificación ABC permite segmentar los SKU y estructurar una **planificación** científica de compras.")
-        with col2: st.success("### 💎 ¿Qué Valor tuvo?\nPermitió entender que los desbalances operativos no se resuelven con intuiciones, sino construyendo puentes de **datos** integrados entre las áreas de compras y ventas.")
-        with col3: st.warning("### 🔮 Aplicación Futura:\nEstablecer políticas automáticas de reaprovisionamiento e implementar rutinas de S&OP (Sales and Operations Planning) para blindar la continuidad del negocio.")
+    st.header("3. Conectando los puntos: El flujo del pensamiento gerencial")
 
-    elif "📉" in opcion_reflexion:
-        st.markdown("### 💰 Diagnóstico Financiero: Auditoría de Costos Reales y Remuneraciones")
-        col1, col2, col3 = st.columns(3)
-        with col1: st.info("### 🧠 ¿Qué Aprendimos?\nA construir el costo real integrando fletes de **importaciones**, mermas y cargas fijas de personal como **sueldos** y **cotizaciones** legalizadas.")
-        with col2: st.success("### 💎 ¿Qué Valor tuvo?\nDesarrollar un pensamiento crítico: si la base contable arrastra errores, los **márgenes** serán ficticios y las utilidades reportadas una mera ilusión financiera.")
-        with col3: st.warning("### 🔮 Aplicación Futura:\nLiderar auditorías de procesos internos y estructurar matrices de precios blindadas ante fluctuaciones en los costos internacionales.")
+    st.write(
+        "En la empresa real, los problemas no aparecen separados por capítulos independientes. "
+        "Todo funciona como un efecto dominó: inventario, costos, clientes, planificación y contabilidad se conectan entre sí."
+    )
+
+    paso = st.select_slider(
+        "Desliza para ver cómo avanza el ciclo de análisis estratégico:",
+        options=[
+            "Paso 1: Diagnóstico",
+            "Paso 2: Foco",
+            "Paso 3: Anticipar",
+            "Paso 4: Traducción financiera"
+        ]
+    )
+
+    st.markdown("---")
+
+    if paso == "Paso 1: Diagnóstico":
+        st.subheader("🔍 Paso 1: Diagnosticar la realidad física")
+        st.write(
+            "Antes de decidir, el gerente debe saber dónde está parado. Esto comienza en bodega: qué productos existen, cuánto rotan, cuánto cuestan y qué problemas presentan."
+        )
+        col1, col2 = st.columns(2)
+        with col1:
+            mini_card(
+                "Inventario acumulado",
+                "Cuando hay productos estancados, la empresa tiene capital inmovilizado. No es solo espacio ocupado: es dinero que no se convierte en ventas.",
+                "📦"
+            )
+        with col2:
+            mini_card(
+                "Quiebre de stock",
+                "Cuando falta un producto importante, ventas pierde oportunidades, el cliente se molesta y puede migrar a la competencia.",
+                "⚠️"
+            )
+        with st.expander("Ver conceptos del diagnóstico operativo"):
+            st.write("**Kardex:** Registro de entradas, salidas y saldos de inventario. Permite conocer rotación, disponibilidad y valorización.")
+            st.write("**Costo real:** Costo que considera compras, importaciones, mermas, fletes, ajustes y errores de registro.")
+            st.write("**Dato crítico:** Si el costo de bodega está mal calculado, cualquier utilidad futura será una ilusión poco confiable.")
+
+    elif paso == "Paso 2: Foco":
+        st.subheader("🎯 Paso 2: Priorizar productos y clientes")
+        st.write(
+            "Los recursos organizacionales son escasos: tiempo, vendedores, capital, espacio y capacidad de análisis. "
+            "Por eso, el pensamiento gerencial exige decidir dónde enfocar con precisión los esfuerzos de la firma."
+        )
+        col1, col2 = st.columns(2)
+        with col1:
+            st.info("**📦 Productos:** No todos los SKU tienen la misma rentabilidad ni la misma rotación. La clasificación ABC ayuda a distinguir productos estratégicos de productos secundarios.")
+            with st.expander("Detalle: Clasificación ABC"):
+                st.write("- **Clase A:** Productos críticos, de alto valor o alta contribución. No pueden faltar en bodega.")
+                st.write("- **Clase B:** Productos intermedios, de control normal y relevancia moderada.")
+                st.write("- **Clase C / Sin Venta:** Productos de bajo impacto, candidatos a liquidación para liberar caja.")
+        with col2:
+            st.info("**🤝 Clientes:** No todos requieren el mismo tipo de atención comercial. La segmentación permite asignar eficientemente la fuerza de ventas.")
+            with st.expander("Detalle: Lógicas B2B y B2C"):
+                st.write("- **B2B (Corporativo):** Venta a empresas. Relación técnica, relacional, de largo plazo y con alta personalización.")
+                st.write("- **B2C (Masivo):** Venta al consumidor final. Relación transaccional, rápida y gestionada por canales digitales.")
+
+    elif paso == "Paso 3: Anticipar":
+        st.subheader("🔮 Paso 3: Anticipar el futuro")
+        st.write(
+            "Cuando ya se conoce qué productos rotan, cuánto cuestan, cuáles son prioritarios y quiénes son los clientes relevantes, la empresa puede proyectar con bases sólidas."
+        )
+        st.success(
+            "El puente definitivo entre ventas y operaciones se llama **planificación de compras**. Su objetivo es estimar unidades futuras para comprar con inteligencia: suficiente stock para vender, pero sin ahogar la caja."
+        )
+        with st.expander("Ver conceptos clave de planificación"):
+            st.write("**Demanda esperada (Forecast):** Unidades que probablemente se venderán en un periodo futuro basándose en datos históricos.")
+            st.write("**Abastecimiento:** Proceso de decidir qué comprar, cuánto comprar y cuándo comprar para cubrir la cadena de suministro.")
+            st.write("**Riesgos Cruzados:** El sobrestock inmoviliza caja; el quiebre destruye la promesa comercial hacia el mercado.")
 
     else:
-        st.markdown("### ⚖️ Diagnóstico de Dirección: Consolidación Financiera y Visualización")
+        st.subheader("⚖️ Paso 4: Traducir la operación a información financiera")
+        st.write(
+            "Todo el esfuerzo comercial y operativo termina reflejándose de forma transparente en la contabilidad gerencial. "
+            "Las decisiones de compras, ventas, inventarios y sueldos se transforman en estados financieros consolidados."
+        )
         col1, col2, col3 = st.columns(3)
-        with col1: st.info("### 🧠 ¿Qué Aprendimos?\nA unificar las transacciones contables operativas en Estados Financieros y a utilizar **IA** estratégica para la confección de **propuestas** comerciales de alto nivel.")
-        with col2: st.success("### 💎 ¿Qué Valor tuvo?\nComprender el poder de la **visualización** avanzada para traducir grandes volúmenes de datos áridos en información estratégica asimilable por un Directorio.")
-        with col3: st.warning("### 🔮 Aplicación Futura:\nPresentar estados de situación corporativa con solidez metodológica y liderar el proceso de toma de decisiones basándose en evidencia empírica auditable.")
+        with col1: mini_card("Balance General", "Muestra los activos, pasivos y patrimonio. Permite auditar la posición de estabilidad financiera de la empresa.", "📘")
+        with col2: mini_card("Estado de Resultados", "Muestra ingresos, costos y gastos. Permite saber con precisión si la empresa ganó o perdió en el ejercicio.", "📊")
+        with col3: mini_card("Flujo de Efectivo", "Muestra las entradas y salidas reales de dinero, evaluando la liquidez inmediata para sobrevivir.", "💧")
+        
+        st.warning(
+            "La pregunta ejecutiva final es: ¿Ganamos o perdimos dinero?, ¿Tenemos liquidez para responder compromisos?, ¿Cuáles son los riesgos estratégicos y qué decisiones debe tomar la Alta Gerencia?"
+        )
 
     st.markdown("---")
+    st.markdown(
+        """
+        <div class="section-card">
+        💡 <b>Criterio Directivo:</b> Los libros de cálculo, las fórmulas y la Inteligencia Artificial pueden entregar datos procesados, 
+        pero ninguna herramienta toma decisiones de dirección por sí sola. Las compañías las lideran profesionales con criterio integral, 
+        capaces de defender sus decisiones considerando contexto, mitigación de riesgos y realidad económica.
+        </div>
+        """,
+        unsafe_allow_html=True
+    )
+
+# ============================================================
+# TAB 4: REFLEXIÓN FINAL (SIMULADOR EJECUTIVO DE CASOS CRÍTICOS)
+# ============================================================
+with tab4:
+    st.header("4. Reflexión ejecutiva e integración de aprendizajes")
+    st.write(
+        "Seleccione un escenario organizativo de alta complejidad para evaluar cómo el análisis y el criterio resuelven las desviaciones del negocio:"
+    )
+
+    opcion = st.selectbox(
+        "Elige un escenario corporativo crítico para auditar con criterio directivo:",
+        [
+            "🔹 Escenario A: La bodega está colapsada, pero Comercial reclama quiebres de stock continuos.",
+            "🔹 Escenario B: Las planillas de costos muestran descalces y hay sospechas de pérdidas en el margen.",
+            "🔹 Escenario C: El Directorio exige sustentar el plan de expansión estratégica basado en la salud del negocio."
+        ]
+    )
+
+    st.markdown("---")
+
+    if "Escenario A" in opcion:
+        st.subheader("📦 Diagnóstico de Operaciones: Sincronización Comercial-Abastecimiento")
+        col1, col2, col3 = st.columns(3)
+        with col1:
+            st.info("""
+            ### 🧠 ¿Qué aprendimos?
+            Que el inventario inmovilizado destruye la caja. El uso del **Kardex** y la clasificación ABC permite segmentar el catálogo de productos y estructurar una **planificación** científica de compras basada en la rotación real.
+            """)
+        with col2:
+            st.success("""
+            ### 💎 ¿Qué valor tuvo?
+            Nos enseñó a no operar por intuición. Comprendimos que los desbalances operativos se solucionan creando un puente de **datos** integrados entre las áreas de compras y ventas corporativas.
+            """)
+        with col3:
+            st.warning("""
+            ### 🔮 ¿Cómo usarlo en el futuro?
+            Estableciendo políticas automáticas de reaprovisionamiento y stock de seguridad, liderando comités mensuales de **abastecimiento** para evitar quiebres y sobrestocks que dañen la liquidez de la firma.
+            """)
+
+    elif "Escenario B" in opcion:
+        st.subheader("💰 Diagnóstico Financiero: Auditoría de Costos Reales y Remuneraciones")
+        col1, col2, col3 = st.columns(3)
+        with col1:
+            st.info("""
+            ### 🧠 ¿Qué aprendimos?
+            A construir el costo real integrando de forma rigurosa los fletes de **importaciones**, mermas de bodega y la carga financiera fija del personal (cálculo de **sueldos** y sus respectivas **cotizaciones** previsionales).
+            """)
+        with col2:
+            st.success("""
+            ### 💎 ¿Qué valor tuvo?
+            Desarrollar un ojo clínico y un pensamiento crítico: si la base contable arrastra errores o ignora leyes sociales, los **márgenes** calculados serán ficticios y las utilidades reportadas una mera ilusión contable.
+            """)
+        with col3:
+            st.warning("""
+            ### 🔮 ¿Cómo usarlo en el futuro?
+            Nos capacita para visar las matrices de precios de productos importados, controlar presupuestos corporativos eficientes y tomar decisiones basadas en **costos reales** auditados, protegiendo la rentabilidad de la firma.
+            """)
+
+    else:
+        st.subheader("⚖️ Diagnóstico de Dirección: Consolidación Financiera y Visualización")
+        col1, col2, col3 = st.columns(3)
+        with col1:
+            st.info("""
+            ### 🧠 ¿Qué aprendimos?
+            A sintetizar transacciones de libros contables en Estados Financieros y a utilizar Inteligencia Artificial (**IA**) como copiloto de alto valor para formular **propuestas** comerciales competitivas y segmentar mercados.
+            """)
+        with col2:
+            st.success("""
+            ### 💎 ¿Qué valor tuvo?
+            Comprender el poder de la **visualización** avanzada para traducir grandes volúmenes de datos áridos en un tablero ejecutivo claro, permitiendo evaluar la salud de todo el negocio en un solo segundo.
+            """)
+        with col3:
+            st.warning("""
+            ### 🔮 ¿Cómo usarlo en el futuro?
+            Presentando informes interactivos de control de gestión ante directorios o inversionistas, defendiendo decisiones estratégicas con argumentos financieros sólidos y evaluando riesgos de forma cuantitativa.
+            """)
+
+    st.markdown("---")
+
     st.markdown(
         """
         <div class="section-card">
         <h3>🤝 Conclusión Consolidada de la Dupla Gerencial</h3>
         <p>
         A lo largo de este trayecto académico comprendimos que <b>las empresas son sistemas vivos, dinámicos e interconectados</b>. 
-        El valor supremo no consistió en memorizar comandos de software, sino en forjar nuestro <b>criterio gerencial</b>. 
-        Las herramientas digitales proveen los datos, pero corresponde a los directivos transformar esa analítica en decisiones estratégicas defendibles. 
-        Nos despedimos del ciclo con el mapa integral de la firma: desde el movimiento primario en bodega hasta el veredicto definitivo en los estados financieros.
+        El verdadero valor del curso no radicó únicamente en dominar softwares o planillas, sino en forjar nuestro <b>criterio gerencial</b>. 
+        Las herramientas digitales proveen los datos, pero corresponde a los líderes transformar esa analítica en decisiones estratégicas defendibles. 
         </p>
+        <p><b>Nos despedimos del ciclo con el mapa de control integral de la organización en mente: desde el movimiento primario en la bodega hasta el veredicto definitivo de los Estados Financieros corporativos.</b></p>
         </div>
         """,
         unsafe_allow_html=True
     )
 
-    st.text_area("✍️ Espacio para comentarios o notas del Profesor evaluador:", "Excelente integración de conceptos y madurez en el análisis por macroáreas estratégicas.")
+    st.text_area(
+        "✍️ Espacio para comentarios o notas del profesor evaluador:",
+        "Excelente integración de conceptos y madurez en el análisis cuantitativo por macroáreas estratégicas."
+    )
