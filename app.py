@@ -154,199 +154,113 @@ with tab1:
     """)
 
 # ==========================================
-# PESTAÑA 2: PORTAFOLIO DE MISIONES (CRONOLÓGICO Y CON CONCEPTOS INTEGRADOS)
+# PESTAÑA 2: PORTAFOLIO POR ÁREAS DE NEGOCIO (CORRECCIÓN SEGÚN FEEDBACK DEL PROFESOR)
 # ==========================================
 with tab2:
-    st.header("🚀 Portafolio de Misiones: Ruta de Aprendizaje Progresiva")
-    st.write("Demuestra tu progreso gerencial completando las misiones en orden para desbloquear las siguientes etapas del ciclo empresarial.")
+    st.header("🏢 Matriz de Madurez y Áreas Funcionales de la Empresa")
+    st.write("Evaluación del progreso del semestre organizado por áreas estratégicas y la evolución de nuestro criterio gerencial.")
 
-    # 1. Inicializar la memoria de progreso si no existe
-    if "nivel_progreso" not in st.session_state:
-        st.session_state.nivel_progreso = 1  # Parte en la Misión 1
+    # 1. Inicializar la memoria de área activa si no existe
+    if "area_activa" not in st.session_state:
+        st.session_state.area_activa = "📦 Operaciones e Inventario"
 
-    # Barra de progreso visual según el nivel actual
-    progreso_porcentaje = int((st.session_state.nivel_progreso - 1) / 5 * 100)
-    st.progress(min(progreso_porcentaje, 100))
-    st.write(f"**Tu Progreso Actual:** Nivel {st.session_state.nivel_progreso} de 6")
-    st.markdown("---")
-
-    # 2. Botones de navegación horizontal (Tu idea original intacta)
-    col_m1, col_m2, col_m3, col_m4, col_m5, col_m7 = st.columns(6)
+    # 2. Botones de Navegación Horizontal por ÁREAS (Mismo diseño interactivo, enfoque correcto)
+    col_a1, col_a2, col_a3 = st.columns(3)
     
-    with col_m1:
-        m1_click = st.button("📦 Misión 1", use_container_width=True)
-    with col_m2:
-        m2_click = st.button("📊 Misión 2", disabled=(st.session_state.nivel_progreso < 2), use_container_width=True)
-    with col_m3:
-        m3_click = st.button("🔮 Misión 3", disabled=(st.session_state.nivel_progreso < 3), use_container_width=True)
-    with col_m4:
-        m4_click = st.button("🤝 Misión 4", disabled=(st.session_state.nivel_progreso < 4), use_container_width=True)
-    with col_m5:
-        m5_click = st.button("⚙️ Misión 5", disabled=(st.session_state.nivel_progreso < 5), use_container_width=True)
-    with col_m7:
-        m7_click = st.button("⚖️ Misión 7", disabled=(st.session_state.nivel_progreso < 6), use_container_width=True)
+    with col_a1:
+        a1_click = st.button("📦 Área: Operaciones e Inventario", use_container_width=True)
+    with col_a2:
+        a2_click = st.button("💰 Área: Finanzas, Costos y Personas", use_container_width=True)
+    with col_a3:
+        a3_click = st.button("📈 Área: Comercial, IA y Datos", use_container_width=True)
 
-    # Definir qué misión mostrar en pantalla
-    if "mision_activa" not in st.session_state:
-        st.session_state.mision_activa = "Misión 1"
-
-    if m1_click: st.session_state.mision_activa = "Misión 1"
-    if m2_click: st.session_state.mision_activa = "Misión 2"
-    if m3_click: st.session_state.mision_activa = "Misión 3"
-    if m4_click: st.session_state.mision_activa = "Misión 4"
-    if m5_click: st.session_state.mision_activa = "Misión 5"
-    if m7_click: st.session_state.mision_activa = "Misión 7"
+    # Controlar el clic de los botones
+    if a1_click: st.session_state.area_activa = "📦 Operaciones e Inventario"
+    if a2_click: st.session_state.area_activa = "💰 Área: Finanzas, Costos y Personas"
+    if a3_click: st.session_state.area_activa = "📈 Área: Comercial, IA y Datos"
 
     st.markdown("---")
 
-    # 3. Contenido de las misiones estructurado con los conceptos de la rúbrica
-    if st.session_state.mision_activa == "Misión 1":
-        st.subheader("📦 Misión 1: Gestión de Inventario y Kardex")
+    # ==========================================
+    # ÁREA 1: OPERACIONES E INVENTARIO
+    # ==========================================
+    if st.session_state.area_activa == "📦 Operaciones e Inventario":
+        st.subheader("📦 Área de Operaciones: Evolución del Abastecimiento y la Bodega")
         
-        # Ficha de Contexto con conceptos explícitos
+        # Ficha Técnica de la Capacidad Operativa
         c1, c2, c3 = st.columns(3)
-        c1.markdown("**🎯 Objetivo:** Determinar la velocidad con la que rota el **inventario** físico.")
-        c2.markdown("**⚠️ Problema Trabajado:** Desbalance en bodega; convivencia de productos estancados junto con quiebres de stock.")
-        c3.markdown("**🛠️ Herramientas:** Planillas de cálculo y análisis de **datos** históricos de movimientos.")
+        c1.markdown("**🎯 Objetivo del Área:** Sincronizar el almacenamiento físico con el ritmo de ventas del negocio.")
+        c2.markdown("**⚠️ Problema Inicial:** Quiebres de stock ciegos conviviendo con productos vencidos o estancados en bodega.")
+        c3.markdown("**🛠️ Herramientas Evolutivas:** Kardex de movimientos, Clasificación ABC (Pareto) y Modelos de Demanda.")
         
         st.markdown("---")
         col1, col2 = st.columns(2)
         with col1:
-            st.markdown("### 🧠 Conceptos Aprendidos y Valor")
-            st.write("Descubrimos que el **inventario** es capital inmovilizado. Aprendimos que el **abastecimiento** eficiente no se decide por intuición, sino analizando el historial operativo de la bodega para asegurar la continuidad del negocio.")
+            st.markdown("### 🔄 Evolución del Aprendizaje (De Misión 1 a Misión 3)")
+            st.write("""
+            Al enfrentar la **Misión 1**, nuestro entendimiento de la logística era muy básico: pensábamos que gestionar la bodega era solo registrar entradas y salidas en un **inventario**. No veíamos el impacto global. 
+            
+            En la **Misión 2** dimos el primer salto al entender que no todos los SKU valen lo mismo y que debíamos priorizar recursos. Pero el verdadero entendimiento del área llegó en la **Misión 3**: ahí comprendimos que la logística no funciona sola. Logramos conectar el pasado del inventario con la **planificación** futura del **abastecimiento**, creando un puente directo con las proyecciones comerciales para no comprar a ciegas.
+            """)
         with col2:
-            st.markdown("### 🛠️ Dificultades, Aprendizaje Clave y Uso Futuro")
-            st.error("**Dificultad:** Enfrentar bases de datos imperfectas y conciliar las presiones entre ventas y finanzas.")
-            st.success("**Aprendizaje Clave y Uso Futuro:** Equilibrar el nivel de servicio con la inversión. En el futuro, usaremos estos **datos** para diseñar políticas óptimas de reposición de mercadería.")
-        
-        if st.session_state.nivel_progreso == 1:
-            if st.button("✅ Comprender Diagnóstico y Desbloquear Misión 2 🔓"):
-                st.session_state.nivel_progreso = 2
-                st.session_state.mision_activa = "Misión 2"
-                st.rerun()
+            st.markdown("### 🛠️ Obstáculos y Criterio Profesional Futuro")
+            st.error("**La Gran Dificultad superada:** Aprender a limpiar bases de **datos** de bodega imperfectas y equilibrar el nivel de servicio al cliente sin congelar la caja de la empresa.")
+            st.success("**Uso en la Empresa Real:** En el futuro, lideraremos áreas de operaciones implementando políticas de reposición basadas en la rotación real y el valor del producto, garantizando la continuidad operativa.")
 
-    elif st.session_state.mision_activa == "Misión 2":
-        st.subheader("📊 Misión 2: Clasificación ABC, Costos e Importaciones")
+    # ==========================================
+    # ÁREA 2: FINANZAS, COSTOS Y PERSONAS
+    # ==========================================
+    elif st.session_state.area_activa == "💰 Área: Finanzas, Costos y Personas":
+        st.subheader("💰 Área de Finanzas y Control de Gestión: De los Costos al Balance Real")
         
-        # Ficha de Contexto
+        # Ficha Técnica de la Capacidad Financiera
         c1, c2, c3 = st.columns(3)
-        c1.markdown("**🎯 Objetivo:** Jerarquizar el catálogo analizando **costos** e **importaciones**.")
-        c2.markdown("**⚠️ Problema Trabajado:** Pérdida de recursos al gestionar todos los productos con la misma prioridad operativa.")
-        c3.markdown("**🛠️ Herramientas:** Clasificación de Pareto aplicada a la estructura de **costos** de adquisición.")
+        c1.markdown("**🎯 Objetivo del Área:** Asegurar la rentabilidad del negocio y la correcta valorización de los recursos.")
+        c2.markdown("**⚠️ Problema Inicial:** Inconsistencias en el ERP, 'costos negativos' y falta de visibilidad del costo empresa real.")
+        c3.markdown("**🛠️ Herramientas Evolutivas:** Prorrateo de fletes, Liquidaciones legalizadas y Balance de 8 columnas.")
         
         st.markdown("---")
         col1, col2 = st.columns(2)
         with col1:
-            st.markdown("### 🧠 Conceptos Aprendidos y Valor")
-            st.write("Aprendimos que en la gestión de **importaciones**, los **costos** logísticos y de aduana impactan directamente en los **márgenes** de contribución de cada SKU. Clasificar los productos nos permite cuidar la rentabilidad.")
+            st.markdown("### 🔄 Evolución del Aprendizaje (De Misión 2 y 5 a Misión 7)")
+            st.write("""
+            Nuestra inversión en esta área comenzó en la **Misión 2**, donde calculábamos **márgenes** comerciales muy sencillos y superficiales. 
+            
+            La verdadera complejidad financiera la descubrimos en la **Misión 5**, donde chocamos con la realidad de las **importaciones** y entendimos que el costo incluye fletes, aranceles y mermas. Además, sumamos la gestión de personas calculando **sueldos** y **cotizaciones** previsionales. Todo este conocimiento disperso maduró y tomó sentido definitivo en la **Misión 7**, donde consolidamos los libros diarios en Estados Financieros reales, aprendiendo a medir la salud financiera de la firma de manera profesional.
+            """)
         with col2:
-            st.markdown("### 🛠️ Dificultades, Aprendizaje Clave y Uso Futuro")
-            st.error("**Dificultad:** Prorratear correctamente los gastos asociados a traer contenedores desde el extranjero.")
-            st.success("**Aprendizaje Clave y Uso Futuro:** Proteger los **márgenes** del negocio. Utilizaremos esto para auditar y priorizar las compras de los artículos más valiosos para la empresa.")
-        
-        if st.session_state.nivel_progreso == 2:
-            if st.button("✅ Definir Foco de Productos y Desbloquear Misión 3 🔓"):
-                st.session_state.nivel_progreso = 3
-                st.session_state.mision_activa = "Misión 3"
-                st.rerun()
+            st.markdown("### 🛠️ Obstáculos y Criterio Profesional Futuro")
+            st.error("**La Gran Dificultad superada:** Trascender el simple 'cuadre matemático' de las celdas de Excel para poder interpretar el riesgo de liquidez y rentabilidad real.")
+            st.success("**Uso en la Empresa Real:** Nos capacita para visar matrices de precios de productos importados, estructurar presupuestos de personal legalmente correctos y defender Estados Financieros ante un Directorio.")
 
-    elif st.session_state.mision_activa == "Misión 3":
-        st.subheader("🔮 Misión 3: Planificación Integrada de la Demanda")
+    # ==========================================
+    # ÁREA 3: COMERCIAL, IA Y DATOS
+    # ==========================================
+    elif st.session_state.area_activa == "📈 Área: Comercial, IA y Datos":
+        st.subheader("📈 Área de Estrategia Comercial e Innovación: Decisiones Basadas en Datos")
         
-        # Ficha de Contexto
+        # Ficha Técnica de la Capacidad Comercial
         c1, c2, c3 = st.columns(3)
-        c1.markdown("**🎯 Objetivo:** Estimar la demanda futura mediante modelos de **planificación**.")
-        c2.markdown("**⚠️ Problema Trabajado:** Incertidumbre comercial que causa compras excesivas o faltantes de stock.")
-        c3.markdown("**🛠️ Herramientas:** Modelos de proyección matemática y presupuestos de **abastecimiento**.")
+        c1.markdown("**🎯 Objetivo del Área:** Maximizar el valor de la cartera de clientes utilizando tecnología de punta.")
+        c2.markdown("**⚠️ Problema Inicial:** Dispersión del equipo de ventas atendiendo de igual forma a clientes masivos y cuentas clave.")
+        c3.markdown("**🛠️ Herramientas Evolutivas:** Matrices de segmentación B2B/B2C, Ingeniería de Prompts (IA) y Dashboards.")
         
         st.markdown("---")
         col1, col2 = st.columns(2)
         with col1:
-            st.markdown("### 🧠 Conceptos Aprendidos y Valor")
-            st.write("El gran valor fue entender la **planificación** integrada. Sirve como el puente definitivo para alinear las metas de ventas de la empresa con el presupuesto asignado para el **abastecimiento** de productos.")
+            st.markdown("### 🔄 Evolución del Aprendizaje (De Misión 4 a Misión 7)")
+            st.write("""
+            En el ámbito comercial, empezamos en la **Misión 4** aprendiendo que una cartera de clientes no es una lista plana. Teníamos que segmentar entre mercados relacionales y transaccionales. 
+            
+            Ahí vivimos un hito de innovación: incorporamos Inteligencia Artificial (**IA**) como copiloto estratégico para redactar **propuestas** de valor personalizadas en tiempo récord. Finalmente, en la **Misión 7**, elevamos el área al conectar esta estrategia con la **visualización** interactiva de **datos**, transformando filas de transacciones contables en gráficos vivos que le permiten al equipo comercial tomar decisiones en tiempo real.
+            """)
         with col2:
-            st.markdown("### 🛠️ Dificultades, Aprendizaje Clave y Uso Futuro")
-            st.error("**Dificultad:** Mitigar riesgos de quiebre sin inmovilizar el capital de trabajo de la firma.")
-            st.success("**Aprendizaje Clave y Uso Futuro:** Sincronizar periódicamente las áreas operativas. En el futuro, aplicaremos esta **planificación** para optimizar la rotación y proteger la caja corporativa.")
-        
-        if st.session_state.nivel_progreso == 3:
-            if st.button("✅ Validar Planificación de Compras y Desbloquear Misión 4 🔓"):
-                st.session_state.nivel_progreso = 4
-                st.session_state.mision_activa = "Misión 4"
-                st.rerun()
+            st.markdown("### 🛠️ Obstáculos y Criterio Profesional Futuro")
+            st.error("**La Gran Dificultad superada:** Evitar depender ciegamente de la tecnología; aprender a aplicar el criterio humano y ético sobre los reportes generados por la **IA**.")
+            st.success("**Uso en la Empresa Real:** Nos permite liderar la transformación digital de un equipo de ventas, utilizando la **visualización** avanzada para monitorear objetivos comerciales y cerrar acuerdos corporativos de alto valor.")
 
-    elif st.session_state.mision_activa == "Misión 4":
-        st.subheader("🤝 Misión 4: Gestión de Clientes, Propuestas e IA")
-        
-        # Ficha de Contexto
-        c1, c2, c3 = st.columns(3)
-        c1.markdown("**🎯 Objetivo:** Clasificar la cartera y diseñar **propuestas** comerciales estratégicas.")
-        c2.markdown("**⚠️ Problema Trabajado:** Dispersión del equipo de ventas al atender todas las cuentas con el mismo esfuerzo.")
-        c3.markdown("**🛠️ Herramientas:** Modelos de segmentación y copilotos de Inteligencia Artificial (**IA**).")
-        
-        st.markdown("---")
-        col1, col2 = st.columns(2)
-        with col1:
-            st.markdown("### 🧠 Conceptos Aprendidos y Valor")
-            st.write("Utilizamos Inteligencia Artificial (**IA**) para acelerar el análisis y construir **propuestas** de valor personalizadas para clientes relacionales (B2B) y transaccionales (B2C), optimizando el tiempo comercial.")
-        with col2:
-            st.markdown("### 🛠️ Dificultades, Aprendizaje Clave y Uso Futuro")
-            st.error("**Dificultad:** Mantener el criterio humano y ético al evaluar las ideas entregadas por la **IA**.")
-            st.success("**Aprendizaje Clave y Uso Futuro:** La tecnología potencia la estrategia. Usaremos herramientas de **IA** en nuestro futuro profesional para formular **propuestas** competitivas en tiempo récord.")
-        
-        if st.session_state.nivel_progreso == 4:
-            if st.button("✅ Segmentar Cartera Comercial y Desbloquear Misión 5 🔓"):
-                st.session_state.nivel_progreso = 5
-                st.session_state.mision_activa = "Misión 5"
-                st.rerun()
-
-    elif st.session_state.mision_activa == "Misión 5":
-        st.subheader("⚙️ Misión 5: Costos, Sueldos y Cotizaciones")
-        
-        # Ficha de Contexto
-        c1, c2, c3 = st.columns(3)
-        c1.markdown("**🎯 Objetivo:** Auditar las planillas de **costos**, **sueldos** y gastos del periodo.")
-        c2.markdown("**⚠️ Problema Trabajado:** Desfases e inconsistencias en la valorización contable de la operación.")
-        c3.markdown("**🛠️ Herramientas:** Modelos de remuneraciones, libros de **sueldos** y retenciones legales.")
-        
-        st.markdown("---")
-        col1, col2 = st.columns(2)
-        with col1:
-            st.markdown("### 🧠 Conceptos Aprendidos y Valor")
-            st.write("Comprendimos el impacto financiero de los **sueldos** y sus respectivas **cotizaciones** previsionales sobre los **costos** operativos fijos. Validar estas planillas asegura que los márgenes reportados sean reales.")
-        with col2:
-            st.markdown("### 🛠️ Dificultades, Aprendizaje Clave y Uso Futuro")
-            st.error("**Dificultad:** Aplicar con exactitud la normativa provisional y legal vigente de las **cotizaciones**.")
-            st.success("**Aprendizaje Clave y Uso Futuro:** El control estricto de egresos. Usaremos este conocimiento para estructurar presupuestos de personal y controlar los **costos** reales de una organización.")
-        
-        if st.session_state.nivel_progreso == 5:
-            if st.button("✅ Auditar Costos de Bodega y Desbloquear Misión FINAL 🔓"):
-                st.session_state.nivel_progreso = 6
-                st.session_state.mision_activa = "Misión 7"
-                st.rerun()
-
-    elif st.session_state.mision_activa == "Misión 7":
-        st.subheader("⚖️ Misión 7: Estados Financieros y Visualización Ejecutiva")
-        
-        # Ficha de Contexto
-        c1, c2, c3 = st.columns(3)
-        c1.markdown("**🎯 Objetivo:** Traducir los registros en informes y herramientas de **visualización** gerencial.")
-        c2.markdown("**⚠️ Problema Trabajado:** Libros contables dispersos que impiden ver la salud financiera global de la firma.")
-        c3.markdown("**🛠️ Herramientas:** Balance, Estado de Resultados y diseño de dashboards para **visualización** de datos.")
-        
-        st.markdown("---")
-        col1, col2 = st.columns(2)
-        with col1:
-            st.markdown("### 🧠 Conceptos Aprendidos y Valor")
-            st.write("Aprendimos a conectar la operación con la estrategia financiera. Logramos estructurar informes claros combinando el análisis de **datos** con técnicas modernas de **visualización** para la toma de decisiones rápidas.")
-        with col2:
-            st.markdown("### 🛠️ Dificultades, Aprendizaje Clave y Uso Futuro")
-            st.error("**Dificultad:** Presentar la información financiera de forma atractiva y legible para un Directorio.")
-            st.success("**Aprendizaje Clave y Uso Futuro:** La transparencia directiva. En el futuro, utilizaremos la **visualización** interactiva de **datos** financieros para rendir cuentas claras ante inversionistas y gerentes.")
-        
-        if st.session_state.nivel_progreso == 6:
-            st.balloons()
-            st.success("🎉 ¡Felicidades! Has completado el ciclo completo del Pensamiento Gerencial. Estás listo para revisar la 'Reflexión Final'.")
+    st.markdown("---")
+    st.caption("💡 Consejo de la Dupla: Selecciona cada área de arriba para demostrarle al evaluador cómo se interconectan los conceptos a lo largo del semestre.")
 # ==========================================
 # PESTAÑA 3: REFLEXIÓN FINAL (¡INTERACTIVA Y SEGÚN LA PREGUNTA CENTRAL!)
 # ==========================================
