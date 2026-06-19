@@ -1,15 +1,24 @@
 import streamlit as st
 import pandas as pd
 
-# 1. Configuración general de la página (Debe ser la primera línea)
-st.set_page_config(page_title="Guía de Supervivencia Gerencial", layout="wide", page_icon="📈")
+# CONFIGURACIÓN DE LA PÁGINA
+st.set_page_config(
+    page_title="Dashboard Pensamiento Gerencial",
+    page_icon="🧠",
+    layout="wide"
+)
 
-# 2. Título principal
-st.title("🎯 Guía de Supervivencia: Pensamiento Gerencial y el Ciclo de la Empresa")
+# TÍTULO PRINCIPAL DEL DASHBOARD
+st.title("🧠 Portafolio Gerencial Colectivo: Integración de Aprendizajes")
+st.subheader("Dupla Estratégica - Control de Gestión, Operaciones y Estrategia Comercial")
 st.markdown("---")
 
-# 3. Creación de las pestañas
-tab1, tab2, tab3 = st.tabs(["📖 Inicio: Guía de Supervivencia", "🚀 Misiones del Curso", "🧠 Reflexión Final"])
+# CREACIÓN DE LAS 3 PESTAÑAS PRINCIPALES
+tab1, tab2, tab3 = st.tabs([
+    "🌐 1. Marco Conceptual", 
+    "🏢 2. Matriz de Madurez por Áreas", 
+    "🧠 3. Reflexión Final e Impacto"
+])
 
 # ==========================================
 # PESTAÑA 1: MARCO CONCEPTUAL (UNIFICADO Y PROFUNDIZADO)
@@ -37,23 +46,42 @@ with tab1:
     with col_der:
         st.markdown("### 🏢 2. La Empresa como Sistema Vivo")
         st.write("""
-        La **Empresa** es el tablero de juego donde se aplica este pensamiento. No es una estructura estática, sino un **sistema vivo, interconectado y organized** que combina recursos humanos, financieros y tecnológicos para resolver un problema en el mercado y generar valor económico.
+        La **Empresa** es el tablero de juego donde se aplica este pensamiento. No es una estructura estática, sino un **sistema vivo, interconectado y organizado** que combina recursos humanos, financieros y tecnológicos para resolver un problema en el mercado y generar valor económico.
         
         Ninguna de sus áreas puede operar como una isla: si el motor operativo falla, el impacto financiero es inmediato. El rol del gerente es mantener la homeostasis y el equilibrio de todo este sistema.
         """)
+
     st.markdown("---")
     
     # PROFUNDIZACIÓN: LA CLASIFICACIÓN INTERACTIVA DE LAS EMPRESAS
     st.markdown("### 📊 Clasificación Avanzada del Tablero de Juego")
     st.write("Para tomar decisiones correctas, un gerente debe clasificar y diagnosticar la naturaleza exacta de la empresa que lidera. En el mercado real, las empresas se estructuran bajo tres ejes críticos:")
 
-    # Usamos métricas visuales para que sea estético y rápido de leer
+    # Métricas visuales estéticas
     m1, m2, m3 = st.columns(3)
     with m1:
         st.metric(label="🎯 Según su Actividad", value="Productivas o Comerciales", delta="B2B / B2C / Importadoras")
         st.markdown("""
         * **Industriales/Productivas:** Transforman materia prima en producto terminado.
-        * **Comerciales/Distribuidores:** Com
+        * **Comerciales/Distribuidores:** Compran y venden bienes sin transformar su forma (como nuestro caso de estudio enfocado en **importaciones**).
+        """)
+    with m2:
+        st.metric(label="📏 Según su Tamaño", value="Micro, Pyme o Gran Empresa", delta="Por Ventas Anuales / Trabajadores")
+        st.markdown("""
+        * **Estructura:** Define la complejidad del flujo de información.
+        * **Impacto Gerencial:** Las Pymes requieren gerentes multifuncionales; las Grandes Empresas exigen control a través de KPIs de **visualización** ejecutiva y delegación de procesos.
+        """)
+    with m3:
+        st.metric(label="⚖️ Según su Capital", value="Privadas, Públicas o Mixtas", delta="Destino de Utilidades / Propiedad")
+        st.markdown("""
+        * **Privadas:** Buscan maximizar la rentabilidad de los accionistas protegiendo sus **márgenes**.
+        * **Públicas/Mixtas:** Buscan el bienestar social o regulatorio, balanceando el presupuesto estatal.
+        """)
+
+    st.markdown("---")
+    st.info("💡 **Conclusión del Marco:** Un buen Pensamiento Gerencial adapta sus decisiones dependiendo de cómo se clasifique su Empresa. No se gestiona igual el inventario de una multinacional que el de una Pyme local; el criterio estratégico debe moldearse al tablero de juego.")
+
+
 # ==========================================
 # PESTAÑA 2: PORTAFOLIO POR ÁREAS DE NEGOCIO (CORRECCIÓN CON ÁREAS EXACTAS)
 # ==========================================
@@ -61,11 +89,11 @@ with tab2:
     st.header("🏢 Matriz de Madurez por Áreas Funcionales")
     st.write("Análisis del progreso del semestre organizado según las tres grandes áreas estratégicas de la empresa real.")
 
-    # 1. Inicializar la memoria de área activa si no existe
+    # Inicializar la memoria de área activa si no existe
     if "area_activa" not in st.session_state:
         st.session_state.area_activa = "📈 Área Comercial"
 
-    # 2. Botones de Navegación Horizontal por las ÁREAS EXACTAS pedidas
+    # Botones de Navegación Horizontal
     col_a1, col_a2, col_a3 = st.columns(3)
     
     with col_a1:
@@ -82,13 +110,10 @@ with tab2:
 
     st.markdown("---")
 
-    # ==========================================
     # ÁREA 1: COMERCIAL
-    # ==========================================
     if st.session_state.area_activa == "📈 Área Comercial":
         st.subheader("📈 Área Comercial: Estrategia de Clientes y Propuestas de Valor")
         
-        # Ficha Técnica
         c1, c2, c3 = st.columns(3)
         c1.markdown("**🎯 Objetivo del Área:** Maximizar la rentabilidad de la cartera diseñando ofertas a la medida del mercado.")
         c2.markdown("**⚠️ Problema Inicial:** Fuerza de ventas desgastada por atender con el mismo esfuerzo a clientes masivos y estratégicos.")
@@ -106,15 +131,12 @@ with tab2:
         with col2:
             st.markdown("### 🛠️ Obstáculos y Criterio Profesional Futuro")
             st.error("**La Gran Dificultad superada:** Aprender a no depender ciegamente de las respuestas tecnológicas; validar y estructurar los entregables de la **IA** con un criterio humano riguroso.")
-            st.success("**Uso en la Empresa Real:** Nos capacita para liderar equipos comerciales modernos, utilizando tecnologías emergentes para segmentar mercados y estructurar ofertas de alto valor corporativo.")
+            st.success("**Uso en la Empresa Real:** Nos capacita para liderar equipos comerciales modernos, utilizando tecnologías emergentes para segmentar mercados y de alto valor corporativo.")
 
-    # ==========================================
     # ÁREA 2: OPERACIONES
-    # ==========================================
     elif st.session_state.area_activa == "📦 Área de Operaciones":
         st.subheader("📦 Área de Operaciones: Gestión de Bodega, Abastecimiento y Logística")
         
-        # Ficha Técnica
         c1, c2, c3 = st.columns(3)
         c1.markdown("**🎯 Objetivo del Área:** Asegurar la continuidad operativa alineando el stock con la demanda.")
         c2.markdown("**⚠️ Problema Inicial:** Quiebres de stock continuos conviviendo con capital inmovilizado en productos estancados.")
@@ -134,13 +156,10 @@ with tab2:
             st.error("**La Gran Dificultad superada:** Conciliar bases de datos operativas imperfectas y balancear las presiones comerciales (stock infinito) con las restricciones financieras.")
             st.success("**Uso en la Empresa Real:** Diseñar e implementar políticas eficientes de inventario y compras internacionales en firmas comerciales, protegiendo el capital de trabajo de la organización.")
 
-    # ==========================================
     # ÁREA 3: FINANZAS DE CONTABILIDAD
-    # ==========================================
     elif st.session_state.area_activa == "💰 Área de Finanzas de Contabilidad":
         st.subheader("💰 Área de Finanzas de Contabilidad: Control de Gestión y Salud Financiera")
         
-        # Ficha Técnica
         c1, c2, c3 = st.columns(3)
         c1.markdown("**🎯 Objetivo del Área:** Traducir los hechos económicos de la operación en información verídica para la toma de decisiones.")
         c2.markdown("**⚠️ Problema Inicial:** Inconsistencias en registros, desfases de costeo en ERP y datos dispersos sin estructura ejecutiva.")
@@ -158,12 +177,14 @@ with tab2:
         with col2:
             st.markdown("### 🛠️ Obstáculos y Criterio Profesional Futuro")
             st.error("**La Gran Dificultad superada:** Superar el simple cuadre numérico de celdas y balances para ser capaces de redactar conclusiones financieras estratégicas sobre la liquidez y el riesgo.")
-            st.success("**Uso en la Empresa Real:** Nos faculta para estructurar presupuestos corporativos eficientes, auditar costos de importación reales y rendir cuentas transparentes ante un Directorio o inversionistas mediante tableros de control.")
+            st.success("**Uso en la Empresa Real:** Nos faculta para actuar con presupuestos corporativos eficientes, auditar costos de importación reales y rendir cuentas transparentes ante un Directorio o inversionistas mediante tableros de control.")
 
     st.markdown("---")
     st.caption("💡 Consejo de la Dupla: Haz clic en cada una de las tres áreas de arriba para revisar el progreso contable, comercial y logístico exigido en la pauta.")
+
+
 # ==========================================
-# PESTAÑA 3: REFLEXIÓN FINAL (¡INTERACTIVA Y SEGÚN LA PREGUNTA CENTRAL!)
+# PESTAÑA 3: REFLEXIÓN FINAL (INTERACTIVA Y COMPLETA)
 # ==========================================
 with tab3:
     st.header("🧠 Reflexión Ejecutiva e Integración de Aprendizajes")
@@ -171,7 +192,7 @@ with tab3:
     
     st.markdown("---")
     
-    # 1. Componente Interactivo: El Simulador de Decisiones Gerenciales
+    # Componente Interactivo: El Simulador de Decisiones Gerenciales
     st.subheader("🏢 Simulador de Criterio Gerencial")
     st.write("Imagina que eres el nuevo Gerente General de nuestra empresa importadora. ¿Qué problema crítico te gustaría resolver hoy?")
     
@@ -184,7 +205,7 @@ with tab3:
     
     st.markdown("---")
     
-    # 2. Respuestas dinámicas que responden exactamente a la pregunta del examen
+    # Respuestas dinámicas
     if opcion_reflexion == "🚨 Escenario A: La bodega está colapsada, pero Comercial dice que faltan productos.":
         st.markdown("### 📦 Diagnóstico: Gestión de Inventario, Abastecimiento y Planificación")
         
@@ -192,7 +213,7 @@ with tab3:
         with col1:
             st.info("### 🧠 ¿Qué Aprendimos?")
             st.write("""
-            En las **Misiones 1, 2 y 3** aprendimos que el inventario no es solo mercadería guardada, sino capital de trabajo congelado. 
+            En las áreas de operaciones aprendimos que el inventario no es solo mercadería guardada, sino capital de trabajo congelado. 
             Aprendimos a usar el **Kardex** para calcular la rotación real, a aplicar la **Clasificación ABC** (Pareto) para priorizar el catálogo, y a usar modelos matemáticos de **planificación** de la demanda.
             """)
             
@@ -215,7 +236,7 @@ with tab3:
         with col1:
             st.info("### 🧠 ¿Qué Aprendimos?")
             st.write("""
-            En las **Misiones 2 and 5** aprendimos a auditar la estructura completa de **costos**, incluyendo el prorrateo de fletes en **importaciones**. También calculamos el impacto real de los **sueldos** y sus **cotizaciones** previsionales sobre la carga financiera fija de la empresa.
+            Aprendimos a auditar la estructura completa de **costos**, incluyendo el prorrateo de fletes en **importaciones**. También calculamos el impacto real de los **sueldos** y sus **cotizaciones** previsionales sobre la carga financiera fija de la empresa.
             """)
             
         with col2:
@@ -237,7 +258,7 @@ with tab3:
         with col1:
             st.info("### 🧠 ¿Qué Aprendimos?")
             st.write("""
-            En las **Misiones 4 y 7** aprendimos a sintetizar miles de transacciones de libros diarios en Estados Financieros (Balance y Estado de Resultados). Además, aprendimos a usar Inteligencia Artificial (**IA**) como copiloto para diseñar **propuestas** comerciales y segmentar clientes.
+            Aprendimos a sintetizar miles de transacciones de libros diarios en Estados Financieros (Balance y Estado de Resultados). Además, aprendimos a usar Inteligencia Artificial (**IA**) como copiloto para diseñar **propuestas** comerciales y segmentar clientes.
             """)
             
         with col2:
@@ -254,7 +275,7 @@ with tab3:
 
     st.markdown("---")
     
-    # 3. Conclusión de cierre de la Dupla
+    # Conclusión de cierre de la Dupla
     st.markdown("### 🤝 Conclusión de la Dupla Gerencial")
     st.markdown("""
     A lo largo de este taller, comprendimos que **las empresas son sistemas vivos e interconectados**. El verdadero valor del curso no radicó en dominar el software, sino en el **desarrollo del criterio gerencial**. Las herramientas nos entregan los datos, pero somos los profesionales quienes, con pensamiento crítico, debemos transformar esos datos en decisiones estratégicas. 
