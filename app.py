@@ -154,113 +154,113 @@ with tab1:
     """)
 
 # ==========================================
-# PESTAÑA 2: PORTAFOLIO POR ÁREAS DE NEGOCIO (CORRECCIÓN SEGÚN FEEDBACK DEL PROFESOR)
+# PESTAÑA 2: PORTAFOLIO POR ÁREAS DE NEGOCIO (CORRECCIÓN CON ÁREAS EXACTAS)
 # ==========================================
 with tab2:
-    st.header("🏢 Matriz de Madurez y Áreas Funcionales de la Empresa")
-    st.write("Evaluación del progreso del semestre organizado por áreas estratégicas y la evolución de nuestro criterio gerencial.")
+    st.header("🏢 Matriz de Madurez por Áreas Funcionales")
+    st.write("Análisis del progreso del semestre organizado según las tres grandes áreas estratégicas de la empresa real.")
 
     # 1. Inicializar la memoria de área activa si no existe
     if "area_activa" not in st.session_state:
-        st.session_state.area_activa = "📦 Operaciones e Inventario"
+        st.session_state.area_activa = "📈 Área Comercial"
 
-    # 2. Botones de Navegación Horizontal por ÁREAS (Mismo diseño interactivo, enfoque correcto)
+    # 2. Botones de Navegación Horizontal por las ÁREAS EXACTAS pedidas
     col_a1, col_a2, col_a3 = st.columns(3)
     
     with col_a1:
-        a1_click = st.button("📦 Área: Operaciones e Inventario", use_container_width=True)
+        a1_click = st.button("📈 Comercial", use_container_width=True)
     with col_a2:
-        a2_click = st.button("💰 Área: Finanzas, Costos y Personas", use_container_width=True)
+        a2_click = st.button("📦 Operaciones", use_container_width=True)
     with col_a3:
-        a3_click = st.button("📈 Área: Comercial, IA y Datos", use_container_width=True)
+        a3_click = st.button("💰 Finanzas de Contabilidad", use_container_width=True)
 
     # Controlar el clic de los botones
-    if a1_click: st.session_state.area_activa = "📦 Operaciones e Inventario"
-    if a2_click: st.session_state.area_activa = "💰 Área: Finanzas, Costos y Personas"
-    if a3_click: st.session_state.area_activa = "📈 Área: Comercial, IA y Datos"
+    if a1_click: st.session_state.area_activa = "📈 Área Comercial"
+    if a2_click: st.session_state.area_activa = "📦 Área de Operaciones"
+    if a3_click: st.session_state.area_activa = "💰 Área de Finanzas de Contabilidad"
 
     st.markdown("---")
 
     # ==========================================
-    # ÁREA 1: OPERACIONES E INVENTARIO
+    # ÁREA 1: COMERCIAL
     # ==========================================
-    if st.session_state.area_activa == "📦 Operaciones e Inventario":
-        st.subheader("📦 Área de Operaciones: Evolución del Abastecimiento y la Bodega")
+    if st.session_state.area_activa == "📈 Área Comercial":
+        st.subheader("📈 Área Comercial: Estrategia de Clientes y Propuestas de Valor")
         
-        # Ficha Técnica de la Capacidad Operativa
+        # Ficha Técnica
         c1, c2, c3 = st.columns(3)
-        c1.markdown("**🎯 Objetivo del Área:** Sincronizar el almacenamiento físico con el ritmo de ventas del negocio.")
-        c2.markdown("**⚠️ Problema Inicial:** Quiebres de stock ciegos conviviendo con productos vencidos o estancados en bodega.")
-        c3.markdown("**🛠️ Herramientas Evolutivas:** Kardex de movimientos, Clasificación ABC (Pareto) y Modelos de Demanda.")
+        c1.markdown("**🎯 Objetivo del Área:** Maximizar la rentabilidad de la cartera diseñando ofertas a la medida del mercado.")
+        c2.markdown("**⚠️ Problema Inicial:** Fuerza de ventas desgastada por atender con el mismo esfuerzo a clientes masivos y estratégicos.")
+        c3.markdown("**🛠️ Herramientas Evolutivas:** Segmentación B2B/B2C, Ingeniería de Prompts e Inteligencia Artificial.")
         
         st.markdown("---")
         col1, col2 = st.columns(2)
         with col1:
-            st.markdown("### 🔄 Evolución del Aprendizaje (De Misión 1 a Misión 3)")
+            st.markdown("### 🔄 Evolución del Aprendizaje Gerencial")
             st.write("""
-            Al enfrentar la **Misión 1**, nuestro entendimiento de la logística era muy básico: pensábamos que gestionar la bodega era solo registrar entradas y salidas en un **inventario**. No veíamos el impacto global. 
+            Al principio del semestre, nuestra visión comercial consistía simplemente en empujar ventas sin una estrategia clara. A lo largo del proceso, entendimos que el éxito comercial requiere una **planificación** integrada. 
             
-            En la **Misión 2** dimos el primer salto al entender que no todos los SKU valen lo mismo y que debíamos priorizar recursos. Pero el verdadero entendimiento del área llegó en la **Misión 3**: ahí comprendimos que la logística no funciona sola. Logramos conectar el pasado del inventario con la **planificación** futura del **abastecimiento**, creando un puente directo con las proyecciones comerciales para no comprar a ciegas.
+            Aprendimos a clasificar la cartera distinguiendo el comportamiento de clientes bajo lógicas transaccionales (B2C) y relacionales (B2B). El gran salto innovador ocurrió al integrar Inteligencia Artificial (**IA**) como copiloto, permitiéndonos formular **propuestas** comerciales competitivas y personalizadas en tiempo récord, optimizando el rendimiento de la fuerza de ventas.
             """)
         with col2:
             st.markdown("### 🛠️ Obstáculos y Criterio Profesional Futuro")
-            st.error("**La Gran Dificultad superada:** Aprender a limpiar bases de **datos** de bodega imperfectas y equilibrar el nivel de servicio al cliente sin congelar la caja de la empresa.")
-            st.success("**Uso en la Empresa Real:** En el futuro, lideraremos áreas de operaciones implementando políticas de reposición basadas en la rotación real y el valor del producto, garantizando la continuidad operativa.")
+            st.error("**La Gran Dificultad superada:** Aprender a no depender ciegamente de las respuestas tecnológicas; validar y estructurar los entregables de la **IA** con un criterio humano riguroso.")
+            st.success("**Uso en la Empresa Real:** Nos capacita para liderar equipos comerciales modernos, utilizando tecnologías emergentes para segmentar mercados y estructurar ofertas de alto valor corporativo.")
 
     # ==========================================
-    # ÁREA 2: FINANZAS, COSTOS Y PERSONAS
+    # ÁREA 2: OPERACIONES
     # ==========================================
-    elif st.session_state.area_activa == "💰 Área: Finanzas, Costos y Personas":
-        st.subheader("💰 Área de Finanzas y Control de Gestión: De los Costos al Balance Real")
+    elif st.session_state.area_activa == "📦 Área de Operaciones":
+        st.subheader("📦 Área de Operaciones: Gestión de Bodega, Abastecimiento y Logística")
         
-        # Ficha Técnica de la Capacidad Financiera
+        # Ficha Técnica
         c1, c2, c3 = st.columns(3)
-        c1.markdown("**🎯 Objetivo del Área:** Asegurar la rentabilidad del negocio y la correcta valorización de los recursos.")
-        c2.markdown("**⚠️ Problema Inicial:** Inconsistencias en el ERP, 'costos negativos' y falta de visibilidad del costo empresa real.")
-        c3.markdown("**🛠️ Herramientas Evolutivas:** Prorrateo de fletes, Liquidaciones legalizadas y Balance de 8 columnas.")
+        c1.markdown("**🎯 Objetivo del Área:** Asegurar la continuidad operativa alineando el stock con la demanda.")
+        c2.markdown("**⚠️ Problema Inicial:** Quiebres de stock continuos conviviendo con capital inmovilizado en productos estancados.")
+        c3.markdown("**🛠️ Herramientas Evolutivas:** Historial de Kardex, Análisis de Pareto (ABC) y Prorrateo logístico.")
         
         st.markdown("---")
         col1, col2 = st.columns(2)
         with col1:
-            st.markdown("### 🔄 Evolución del Aprendizaje (De Misión 2 y 5 a Misión 7)")
+            st.markdown("### 🔄 Evolución del Aprendizaje Gerencial")
             st.write("""
-            Nuestra inversión en esta área comenzó en la **Misión 2**, donde calculábamos **márgenes** comerciales muy sencillos y superficiales. 
+            Comenzamos viendo la logística de forma aislada, creyendo que la bodega se manejaba de forma intuitiva. El análisis del **Kardex** físico nos abrió los ojos para entender la velocidad de rotación real del **inventario**. 
             
-            La verdadera complejidad financiera la descubrimos en la **Misión 5**, donde chocamos con la realidad de las **importaciones** y entendimos que el costo incluye fletes, aranceles y mermas. Además, sumamos la gestión de personas calculando **sueldos** y **cotizaciones** previsionales. Todo este conocimiento disperso maduró y tomó sentido definitivo en la **Misión 7**, donde consolidamos los libros diarios en Estados Financieros reales, aprendiendo a medir la salud financiera de la firma de manera profesional.
+            Posteriormente, la clasificación ABC nos enseñó a priorizar esfuerzos en los SKU críticos para el negocio. La madurez del área se consolidó al enfrentar el proceso de **importaciones**, donde logramos conectar la operación de traer contenedores desde el extranjero con una estrategia de **abastecimiento** sincronizada con las proyecciones de venta de la empresa.
             """)
         with col2:
             st.markdown("### 🛠️ Obstáculos y Criterio Profesional Futuro")
-            st.error("**La Gran Dificultad superada:** Trascender el simple 'cuadre matemático' de las celdas de Excel para poder interpretar el riesgo de liquidez y rentabilidad real.")
-            st.success("**Uso en la Empresa Real:** Nos capacita para visar matrices de precios de productos importados, estructurar presupuestos de personal legalmente correctos y defender Estados Financieros ante un Directorio.")
+            st.error("**La Gran Dificultad superada:** Conciliar bases de datos operativas imperfectas y balancear las presiones comerciales (stock infinito) con las restricciones financieras.")
+            st.success("**Uso en la Empresa Real:** Diseñar e implementar políticas eficientes de inventario y compras internacionales en firmas comerciales, protegiendo el capital de trabajo de la organización.")
 
     # ==========================================
-    # ÁREA 3: COMERCIAL, IA Y DATOS
+    # ÁREA 3: FINANZAS DE CONTABILIDAD
     # ==========================================
-    elif st.session_state.area_activa == "📈 Área: Comercial, IA y Datos":
-        st.subheader("📈 Área de Estrategia Comercial e Innovación: Decisiones Basadas en Datos")
+    elif st.session_state.area_activa == "💰 Área de Finanzas de Contabilidad":
+        st.subheader("💰 Área de Finanzas de Contabilidad: Control de Gestión y Salud Financiera")
         
-        # Ficha Técnica de la Capacidad Comercial
+        # Ficha Técnica
         c1, c2, c3 = st.columns(3)
-        c1.markdown("**🎯 Objetivo del Área:** Maximizar el valor de la cartera de clientes utilizando tecnología de punta.")
-        c2.markdown("**⚠️ Problema Inicial:** Dispersión del equipo de ventas atendiendo de igual forma a clientes masivos y cuentas clave.")
-        c3.markdown("**🛠️ Herramientas Evolutivas:** Matrices de segmentación B2B/B2C, Ingeniería de Prompts (IA) y Dashboards.")
+        c1.markdown("**🎯 Objetivo del Área:** Traducir los hechos económicos de la operación en información verídica para la toma de decisiones.")
+        c2.markdown("**⚠️ Problema Inicial:** Inconsistencias en registros, desfases de costeo en ERP y datos dispersos sin estructura ejecutiva.")
+        c3.markdown("**🛠️ Herramientas Evolutivas:** Libros de remuneraciones, Balance de 8 columnas y Dashboards de Control.")
         
         st.markdown("---")
         col1, col2 = st.columns(2)
         with col1:
-            st.markdown("### 🔄 Evolución del Aprendizaje (De Misión 4 a Misión 7)")
+            st.markdown("### 🔄 Evolución del Aprendizaje Gerencial")
             st.write("""
-            En el ámbito comercial, empezamos en la **Misión 4** aprendiendo que una cartera de clientes no es una lista plana. Teníamos que segmentar entre mercados relacionales y transaccionales. 
+            En esta área descubrimos el verdadero lenguaje de los negocios. Comenzamos analizando **costos** básicos, pero avanzamos rápidamente a entender la complejidad de auditar planillas operativas, integrando el cálculo de **sueldos** junto con sus respectivas **cotizaciones** previsionales legales. 
             
-            Ahí vivimos un hito de innovación: incorporamos Inteligencia Artificial (**IA**) como copiloto estratégico para redactar **propuestas** de valor personalizadas en tiempo récord. Finalmente, en la **Misión 7**, elevamos el área al conectar esta estrategia con la **visualización** interactiva de **datos**, transformando filas de transacciones contables en gráficos vivos que le permiten al equipo comercial tomar decisiones en tiempo real.
+            Todo este ecosistema de información contable maduró al transformar los libros diarios en Estados Financieros consolidados (Balance y Estado de Resultados). Esto nos permitió auditar los **márgenes** de contribución reales y utilizar técnicas modernas de **visualización** de **datos** para presentar la salud del negocio a nivel directivo.
             """)
         with col2:
             st.markdown("### 🛠️ Obstáculos y Criterio Profesional Futuro")
-            st.error("**La Gran Dificultad superada:** Evitar depender ciegamente de la tecnología; aprender a aplicar el criterio humano y ético sobre los reportes generados por la **IA**.")
-            st.success("**Uso en la Empresa Real:** Nos permite liderar la transformación digital de un equipo de ventas, utilizando la **visualización** avanzada para monitorear objetivos comerciales y cerrar acuerdos corporativos de alto valor.")
+            st.error("**La Gran Dificultad superada:** Superar el simple cuadre numérico de celdas y balances para ser capaces de redactar conclusiones financieras estratégicas sobre la liquidez y el riesgo.")
+            st.success("**Uso en la Empresa Real:** Nos faculta para estructurar presupuestos corporativos eficientes, auditar costos de importación reales y rendir cuentas transparentes ante un Directorio o inversionistas mediante tableros de control.")
 
     st.markdown("---")
-    st.caption("💡 Consejo de la Dupla: Selecciona cada área de arriba para demostrarle al evaluador cómo se interconectan los conceptos a lo largo del semestre.")
+    st.caption("💡 Consejo de la Dupla: Haz clic en cada una de las tres áreas de arriba para revisar el progreso contable, comercial y logístico exigido en la pauta.")
 # ==========================================
 # PESTAÑA 3: REFLEXIÓN FINAL (¡INTERACTIVA Y SEGÚN LA PREGUNTA CENTRAL!)
 # ==========================================
