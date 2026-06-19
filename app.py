@@ -25,7 +25,7 @@ with tab1:
     
     col_izq, col_der = st.columns([1.2, 1])
     
-  with col_izq:
+    with col_izq:
         st.markdown("### 🧬 1. ¿Qué es el Pensamiento Gerencial?")
         st.write("""
         El **Pensamiento Gerencial** no es solo saber usar planillas o softwares; es el desarrollo de un **criterio analítico y crítico** para tomar decisiones bajo incertidumbre. 
