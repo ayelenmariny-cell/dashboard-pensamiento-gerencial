@@ -608,7 +608,7 @@ with tab4:
         with col1:
             st.info("""
             ### 🧠 ¿Qué aprendimos?
-            A sintetizar transacciones de libros contables en Estados Financieros y a utilizar Inteligencia Artificial (**IA**) como copiloto de alto valor para formular **propuestas** comerciales competitivas y segmentar mercados.
+            A sintetizar transacciones de libros contables en Estados Financieros y a formular **propuestas** comerciales competitivas y segmentar mercados.
             """)
         with col2:
             st.success("""
