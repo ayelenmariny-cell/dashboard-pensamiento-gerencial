@@ -240,7 +240,7 @@ with tab2:
         c1, c2, c3 = st.columns(3)
         with c1: mini_card("Objetivo Primario", "Maximizar la contribución de la cartera diseñando modelos de atención diferenciados.", "🎯")
         with c2: mini_card("Problema de Partida", "Equipos comerciales desgastados por atender con idéntico recurso a clientes masivos y cuentas clave.", "⚠️")
-        with c3: mini_card("Conceptos Clave", "Clientes, Propuestas, Planificación, IA, Segmentación B2B y B2C.", "🔗")
+        with c3: mini_card("Conceptos Clave", "Clientes, Propuestas, Planificación, Segmentación B2B y B2C.", "🔗")
         
         col1, col2 = st.columns(2)
         with col1:
@@ -249,7 +249,7 @@ with tab2:
                 "Al inicio del semestre, nuestra perspectiva comercial era lineal: vender volumen a cualquier costo. "
                 "Al abordar la **Misión 4**, entendimos que una cartera comercial requiere **planificación** analítica. "
                 "Clasificamos a los **clientes** según valor, frecuencia y potencial, distinguiendo dinámicas de negociación corporativa (B2B) frente a masivas (B2C). "
-                "Posteriormente, incorporamos Inteligencia Artificial (**IA**) para formular **propuestas** de valor competitivas de forma ágil, culminando en la **Misión 7** con modelos de **visualización** que mapean el rendimiento comercial en tiempo real."
+                "Posteriormente, formulamos **propuestas** de valor competitivas de forma ágil, culminando en la **Misión 7** con modelos de **visualización** que mapean el rendimiento comercial en tiempo real."
             )
         with col2:
             st.markdown("### 🛠️ Obstáculos Superados y Criterio Profesional")
@@ -276,7 +276,7 @@ with tab2:
             st.success("**Aplicación Futura:** Liderar departamentos logísticos fijando stocks de seguridad matemáticos, optimizando el capital de trabajo y coordinando cadenas de suministro internacionales eficientes.")
 
     elif st.session_state.area_activa == "💰 Finanzas":
-        st.subheader("💰 Área de Finanzas de Contabilidad: Control de Gestión y Estructura Financiera")
+        st.subheader("💰 Área de Finanzas y Contabilidad: Control de Gestión y Estructura Financiera")
         c1, c2, c3 = st.columns(3)
         with c1: mini_card("Objetivo Primario", "Traducir los hechos económicos del negocio en estados financieros íntegros para el gobierno corporativo.", "🎯")
         with c2: mini_card("Problema de Partida", "Existencia de inconsistencias contables ('costos negativos') en los ERP que invalidaban la toma de decisiones.", "⚠️")
