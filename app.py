@@ -231,7 +231,7 @@ with tab2:
     with col_a2:
         if st.button("📦 Operaciones y Bodega", use_container_width=True): st.session_state.area_activa = "📦 Operaciones"
     with col_a3:
-        if st.button("💰 Finanzas de Contabilidad", use_container_width=True): st.session_state.area_activa = "💰 Finanzas"
+        if st.button("💰 Finanzas y Contabilidad", use_container_width=True): st.session_state.area_activa = "💰 Finanzas"
 
     st.markdown("---")
 
@@ -253,7 +253,7 @@ with tab2:
             )
         with col2:
             st.markdown("### 🛠️ Obstáculos Superados y Criterio Profesional")
-            st.error("**El Quiebre:** Superar la tentación de confiar ciegamente en algoritmos de generación de texto corporativo; aprendimos a auditar los entregables de la **IA** bajo un estricto criterio comercial humano.")
+            st.error("**El Quiebre:** Superar la tentación de confiar ciegamente en algoritmos de generación de texto corporativo; aprendimos a auditar los entregables bajo un estricto criterio comercial humano.")
             st.success("**Aplicación Futura:** Diseñar planes de cobertura comercial eficientes, comisiones de venta basadas en **márgenes** reales y transformaciones digitales con analítica de datos comerciales.")
 
     elif st.session_state.area_activa == "📦 Operaciones":
