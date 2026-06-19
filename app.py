@@ -25,7 +25,7 @@ with tab1:
     
     col_izq, col_der = st.columns([1.2, 1])
     
-    with col_izq:
+  with col_izq:
         st.markdown("### 🧬 1. ¿Qué es el Pensamiento Gerencial?")
         st.write("""
         El **Pensamiento Gerencial** no es solo saber usar planillas o softwares; es el desarrollo de un **criterio analítico y crítico** para tomar decisiones bajo incertidumbre. 
@@ -37,11 +37,10 @@ with tab1:
     with col_der:
         st.markdown("### 🏢 2. La Empresa como Sistema Vivo")
         st.write("""
-        La **Empresa** es el tablero de juego donde se aplica este pensamiento. No es una estructura estática, sino un **sistema vivo, interconectado y organizado** que combina recursos humanos, financieros y tecnológicos para resolver un problema en el mercado y generar valor económico.
+        La **Empresa** es el tablero de juego donde se aplica este pensamiento. No es una estructura estática, sino un **sistema vivo, interconectado y organized** que combina recursos humanos, financieros y tecnológicos para resolver un problema en el mercado y generar valor económico.
         
         Ninguna de sus áreas puede operar como una isla: si el motor operativo falla, el impacto financiero es inmediato. El rol del gerente es mantener la homeostasis y el equilibrio de todo este sistema.
         """)
-
     st.markdown("---")
     
     # PROFUNDIZACIÓN: LA CLASIFICACIÓN INTERACTIVA DE LAS EMPRESAS
