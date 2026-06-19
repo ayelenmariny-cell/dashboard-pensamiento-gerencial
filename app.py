@@ -12,147 +12,49 @@ st.markdown("---")
 tab1, tab2, tab3 = st.tabs(["📖 Inicio: Guía de Supervivencia", "🚀 Misiones del Curso", "🧠 Reflexión Final"])
 
 # ==========================================
-# CONTENIDO DE LA PRIMERA PESTAÑA (INICIO)
+# PESTAÑA 1: MARCO CONCEPTUAL (UNIFICADO Y PROFUNDIZADO)
 # ==========================================
 with tab1:
+    st.header("🧠 Fundamentos Gerenciales: El Pensamiento y su Tablero de Juego")
+    st.write("Antes de auditar los números, un gerente debe entender la naturaleza de su mente y la estructura de su entorno.")
     
-    # --- MENSAJE DE BIENVENIDA ---
-    st.markdown("### Bienvenido al curso")
-    st.info("""
-    Antes de sumergirnos en números, planillas y reportes, necesitamos ajustar nuestra forma de ver los negocios. 
-    Esta guía está diseñada para darte el contexto y ayudarte a conectar los puntos que a veces se pierden en el día a día de las clases. 
-    **Aquí no aprenderás a "completar misiones", aprenderás a pensar como un gerente.**
-    """)
-    st.markdown("<br>", unsafe_allow_html=True) # Espacio en blanco
-
-    # --- SECCIÓN 1: EL MOTOR PRINCIPAL ---
-    st.header("1. El Motor Principal: ¿Qué es el Pensamiento Gerencial?")
-    st.write("No se trata de 'ser el jefe' o dar órdenes. El pensamiento gerencial es un **modelo mental**. Es la capacidad de ver una organización como un todo interconectado. Es el arte de tomar decisiones, optimizar recursos limitados y guiar a un equipo hacia un objetivo.")
+    st.markdown("---")
     
-    st.write("#### Un buen gerente cambia de 'lentes' constantemente:")
-    lente = st.radio(
-        "Selecciona un lente para explorar su significado:",
-        ["⚙️ Pensamiento Sistémico", "♟️ Pensamiento Estratégico", "🔍 Pensamiento Crítico"],
-        horizontal=True
-    )
-
-    if lente == "⚙️ Pensamiento Sistémico":
-        st.success("**Pensamiento Sistémico:** Entender que la empresa es como un reloj. Si modificas algo en Ventas, afectará a Finanzas y Producción. Nada ocurre en el vacío.")
-    elif lente == "♟️ Pensamiento Estratégico":
-        st.success("**Pensamiento Estratégico:** Mirar a largo plazo. Es anticipar los movimientos futuros en lugar de solo 'apagar incendios' diarios.")
-    else:
-        st.success("**Pensamiento Crítico:** Cuestionar suposiciones, analizar datos reales y encontrar la causa raíz antes de proponer una solución.")
-
-    # Expander para las funciones clásicas
-    with st.expander("Haz clic aquí para ver las 4 Funciones Clásicas (Tu ciclo de trabajo)"):
-        col_f1, col_f2, col_f3, col_f4 = st.columns(4)
-        col_f1.markdown("📝 **Planificar:**\nDefinir metas y la estrategia para alcanzarlas.")
-        col_f2.markdown("🧩 **Organizar:**\nAsignar recursos y estructurar quién hace qué.")
-        col_f3.markdown("🗣️ **Dirigir:**\nLiderar, motivar y comunicar al equipo.")
-        col_f4.markdown("📊 **Controlar:**\nMedir los resultados y ajustar el rumbo si es necesario.")
+    # SECCIÓN UNIFICADA: PENSAMIENTO GERENCIAL Y LA EMPRESA
+    st.subheader("🌐 El Motor y el Tablero: Sincronizando la Mente Gerencial con la Empresa Real")
+    
+    col_izq, col_der = st.columns([1.2, 1])
+    
+    with col_izq:
+        st.markdown("### 🧬 1. ¿Qué es el Pensamiento Gerencial?")
+        st.write("""
+        El **Pensamiento Gerencial** no es solo saber usar planillas o softwares; es el desarrollo de un **criterio analítico y crítico** para tomar decisiones bajo incertidumbre. 
+        Un gerente no mira datos aislados. Su mente opera como un conector de puntos: entiende que un retraso en la bodega (Operaciones) destruye una promesa de venta (Comercial) y desangra la liquidez en el mediano plazo (Finanzas). 
+        
+        Desarrollar este pensamiento implica transicionar de un rol operativo (hacer la tarea) a un **rol estratégico** (entender el impacto sistémico de la tarea en el negocio).
+        """)
+    
+    with col_der:
+        st.markdown("### 🏢 2. La Empresa como Sistema Vivo")
+        st.write("""
+        La **Empresa** es el tablero de juego donde se aplica este pensamiento. No es una estructura estática, sino un **sistema vivo, interconectado y organizado** que combina recursos humanos, financieros y tecnológicos para resolver un problema en el mercado y generar valor económico.
+        
+        Ninguna de sus áreas puede operar como una isla: si el motor operativo falla, el impacto financiero es inmediato. El rol del gerente es mantener la homeostasis y el equilibrio de todo este sistema.
+        """)
 
     st.markdown("---")
-
-    # --- SECCIÓN 2: EL TABLERO DE JUEGO ---
-    st.header("2. El Tablero de Juego: ¿Qué es una Empresa y cómo se clasifica?")
-    st.write("Más allá de los edificios corporativos o las marcas, una empresa es un **sistema vivo**. Es un conjunto de personas, recursos y procesos unidos con un objetivo claro: resolver un problema o satisfacer una necesidad del mercado a cambio de un beneficio.")
-    st.write("🏥 *La empresa es como un cuerpo: las decisiones gerenciales son el cerebro que coordina que el corazón (finanzas), los músculos (operaciones) y los sentidos (marketing) trabajen juntos para sobrevivir.*")
     
-    st.write("Dependiendo de dónde trabajes mañana, el tablero cambia:")
-    
-    # Tabla de sectores económicos
-    datos_sectores = {
-        "Sector": ["Primario", "Secundario", "Terciario"],
-        "¿Qué hacen?": ["Extracción de materias primas.", "Manufactura y transformación.", "Servicios, comercio e intangibles."],
-        "Ejemplo": ["Minería, Agricultura", "Fábrica de muebles", "Bancos, Retail"],
-        "Impacto en tus decisiones": ["Fuerte enfoque en maquinaria e inventario físico.", "Su corazón está en los Costos de Producción y compras.", "Las ventas y la fidelización de clientes son su motor principal."]
-    }
-    df_sectores = pd.DataFrame(datos_sectores)
-    st.dataframe(df_sectores, use_container_width=True, hide_index=True)
+    # PROFUNDIZACIÓN: LA CLASIFICACIÓN INTERACTIVA DE LAS EMPRESAS
+    st.markdown("### 📊 Clasificación Avanzada del Tablero de Juego")
+    st.write("Para tomar decisiones correctas, un gerente debe clasificar y diagnosticar la naturaleza exacta de la empresa que lidera. En el mercado real, las empresas se estructuran bajo tres ejes críticos:")
 
-    st.markdown("---")
-
-    # --- SECCIÓN 3: EL ESCENARIO ---
-    st.header("3. El Escenario: Nuestra Empresa y sus Departamentos")
-    st.write("Para entender el recorrido de este curso, simularemos trabajar en una **mediana empresa comercializadora e importadora (Sector Terciario)**. No fabricamos desde cero; compramos productos terminados, los almacenamos y los vendemos.")
-    st.write("En una empresa así, el pensamiento gerencial requiere alinear tres grandes áreas que, si no se comunican, destruyen el negocio:")
-
-    # Columnas de departamentos
-    col_ventas, col_operaciones, col_finanzas = st.columns(3)
-    
-    with col_ventas:
-        st.error("🛒 **El Área Comercial (Ventas)**")
-        st.write("- **Su objetivo:** Vender al máximo.")
-        st.write("- **Su peor pesadilla:** Prometer un producto y que no haya stock.")
-        
-    with col_operaciones:
-        st.warning("📦 **Área de Operaciones (Bodega)**")
-        st.write("- **Su objetivo:** Son los guardianes físicos.")
-        st.write("- **Su peor pesadilla:** Comprar cosas que nadie quiere y colapsar la bodega.")
-        
-    with col_finanzas:
-        st.success("💰 **Finanzas y Contabilidad**")
-        st.write("- **Su objetivo:** Son los guardianes del dinero.")
-        st.write("- **Su peor pesadilla:** Tener millones secuestrados en inventario muerto o gastar más de lo que ingresa.")
-
-    st.markdown("---")
-
-    # --- SECCIÓN 4: EL FLUJO (EFECTO DOMINÓ) ---
-    st.header("4. Conectando los Puntos: El Flujo del Pensamiento Gerencial")
-    st.write("En el mundo real, los problemas no vienen separados por capítulos de un libro. Todo está conectado mediante un efecto dominó. Así es como un gerente estructura su mente para hacer que las áreas trabajen en armonía:")
-
-    # Slider temporal interactivo
-    paso = st.select_slider(
-        "Desliza para ver cómo avanza el ciclo de la empresa:",
-        options=["Paso 1: Diagnóstico", "Paso 2: Foco", "Paso 3: Anticipar", "Paso 4: Traducción"]
-    )
-
-    if paso == "Paso 1: Diagnóstico":
-        st.markdown("### 🔍 Paso 1: Diagnosticar la Realidad Física (Lo que tenemos y lo que cuesta)")
-        st.write("Antes de tomar cualquier decisión de negocios, un gerente debe saber exactamente dónde está parado. Esto empieza en la bodega.")
-        st.write("Si tienes productos acumulados por meses sin venderse, la empresa tiene dinero inmovilizado; por el contrario, si te quedas sin stock (quiebre), los clientes reclaman y se van a la competencia. Para arreglar esto, no usas la intuición, usas un historial llamado **Kardex** para entender cómo rota el inventario y crear una política clara.")
-        st.write("Al mismo tiempo, debes calcular el **costo real** de ese inventario. El costo de un producto cambia constantemente por mermas, importaciones o errores en el sistema (incluso arrojando 'costos negativos'). Si el gerente de Operaciones no calcula bien cuánto cuesta lo que hay en bodega, cualquier cálculo de ganancias futuras será una mentira.")
-
-    elif paso == "Paso 2: Foco":
-        st.markdown("### 🎯 Paso 2: El Poder del Foco (Priorizar Productos y Clientes)")
-        st.write("Los recursos de una empresa (tiempo, dinero, vendedores) son limitados. El pensamiento gerencial no consiste en tratar a todos por igual, sino en decidir a qué prestarle atención para maximizar el valor.")
-        
-        c_prod, c_cli = st.columns(2)
-        
-        with c_prod:
-            st.info("**📦 En los Productos:**")
-            st.write("¿Por qué es necesario clasificarlos? Porque no todos los SKU aportan la misma rentabilidad ni tienen la misma rotación.")
-            st.write("El desafío gerencial es definir una lógica (como la metodología ABC) que te permita identificar cuáles son los productos 'A' (estratégicos, nunca pueden faltar) frente a los 'C' (posibles candidatos a liquidación para liberar espacio y capital).")
-            
-        with c_cli:
-            st.info("**🤝 En los Clientes:**")
-            st.write("¿Por qué clasificar a tus compradores? Porque tu fuerza de ventas y tu tiempo son escasos.")
-            st.write("""
-            * **B2B (Business-to-Business):** La empresa vende a otras empresas. Aquí la relación es **relacional y técnica**; el cliente busca un aliado a largo plazo, por lo que justifica una atención personalizada y visitas de venta.
-            * **B2C (Business-to-Consumer):** La empresa vende directo al consumidor final. Aquí la relación es **transaccional y masiva**; el volumen es clave y la atención suele ser automatizada o digital.
-            """)
-            st.write("Debes razonar sobre el valor de cada uno: ¿Quién sostiene el flujo de caja hoy? ¿Quién tiene potencial de crecimiento? Esta segmentación permite definir qué clientes justifican una atención personalizada frente a cuáles se gestionan mediante canales digitales.")
-
-    elif paso == "Paso 3: Anticipar":
-        st.markdown("### 🔮 Paso 3: Anticipar el Futuro (Planificar para no quebrar)")
-        st.write("Una vez que sabes qué productos rotan, cuánto cuestan, cuáles son prioritarios y quiénes son tus mejores clientes, dejas de mirar el pasado y empiezas a proyectar.")
-        st.write("El puente entre Ventas y Operaciones se llama **Planificación de Compras**. Basándote en el historial, debes proyectar matemáticamente cuántas unidades vas a vender en los próximos meses. Esta proyección le permite al departamento de Compras invertir el dinero de forma inteligente, asegurando el stock exacto sin ahogar las finanzas de la empresa.")
-
-    elif paso == "Paso 4: Traducción":
-        st.markdown("### ⚖️ Paso 4: La Traducción Financiera (El veredicto final)")
-        st.write("Todo el esfuerzo comercial y operativo termina en un solo lugar: la contabilidad gerencial.")
-        st.write("La contabilidad no es solo para pagar impuestos; es el sistema de información definitivo. Todas tus decisiones de compras, la gestión de tus clientes y los costos de tu bodega se transforman en diarios contables y Estados Financieros.")
-        st.write("Aquí, el gerente revisa el Balance, el Estado de Resultados y el Flujo de Efectivo para compararlos contra un presupuesto (por ejemplo, evaluando variaciones contra un escenario 15% menor). El objetivo final de conectar todos estos puntos es poder sentarse frente al directorio y responder con **conclusiones ejecutivas** a las preguntas más importantes: ¿Ganamos o perdimos plata? ¿Tenemos liquidez para sobrevivir? ¿Cuáles son nuestros riesgos?")
-
-    st.markdown("---")
-
-    # --- CIERRE: CONSEJO DE ORO ---
-    st.warning("""
-    💡 **El Consejo de Oro para este curso:**
-    
-    Los libros, las fórmulas de Excel o la Inteligencia Artificial pueden entregarte datos o marcos teóricos. Sin embargo, ninguna herramienta toma decisiones por una empresa real. En la vida profesional, los algoritmos no dirigen las compañías; las dirigen personas con **criterio gerencial** capaces de defender sus decisiones considerando el contexto y la realidad de su negocio.
-    """)
-
+    # Usamos métricas visuales para que sea estético y rápido de leer
+    m1, m2, m3 = st.columns(3)
+    with m1:
+        st.metric(label="🎯 Según su Actividad", value="Productivas o Comerciales", delta="B2B / B2C / Importadoras")
+        st.markdown("""
+        * **Industriales/Productivas:** Transforman materia prima en producto terminado.
+        * **Comerciales/Distribuidores:** Com
 # ==========================================
 # PESTAÑA 2: PORTAFOLIO POR ÁREAS DE NEGOCIO (CORRECCIÓN CON ÁREAS EXACTAS)
 # ==========================================
